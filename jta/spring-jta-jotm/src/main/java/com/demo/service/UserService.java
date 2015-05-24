@@ -2,6 +2,7 @@ package com.demo.service;
 
 import java.sql.Connection;
 
+import javax.sql.ConnectionPoolDataSource;
 import javax.sql.DataSource;
 import javax.sql.XAConnection;
 import javax.sql.XADataSource;
@@ -11,6 +12,11 @@ import javax.transaction.TransactionManager;
 import javax.transaction.UserTransaction;
 import javax.transaction.xa.XAResource;
 
+import org.enhydra.jdbc.pool.GenericPool;
+import org.enhydra.jdbc.pool.StandardPoolDataSource;
+import org.enhydra.jdbc.pool.StandardXAPoolDataSource;
+import org.enhydra.jdbc.standard.StandardDataSource;
+import org.enhydra.jdbc.standard.StandardXADataSource;
 import org.objectweb.jotm.TransactionImpl;
 import org.objectweb.jotm.UserTransactionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +44,18 @@ public class UserService {
 	DataSource dataSource;
 	Connection connection;
 	
+	ConnectionPoolDataSource dfsfds;
+	
 	UserTransactionFactory userTransactionFactory;
 	org.objectweb.jotm.datasource.DataSourceFactory dataSourceFactory;
 	
 	PlatformTransactionManager asds;
+	
+	GenericPool afsdfds;
+	StandardDataSource asdfdsfd;
+	StandardXADataSource ASFDGD;
+	StandardXAPoolDataSource FSDGFDGFD;
+	StandardPoolDataSource asfsdfdd;
 
 	@Autowired
 	private UserDao userDao;
