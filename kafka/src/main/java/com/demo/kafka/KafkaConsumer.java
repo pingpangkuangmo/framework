@@ -23,7 +23,10 @@ public class KafkaConsumer extends Thread{
 	}
 	
 	public static void main(String[] args) throws UnsupportedEncodingException{
-		KafkaConsumer consumer=new KafkaConsumer("lg-test");
+		//KafkaConsumer consumer=new KafkaConsumer("iis-metrics");
+		KafkaConsumer consumer=new KafkaConsumer("logginggw-iislog");
+		//KafkaConsumer consumer=new KafkaConsumer("lg-test");
+		//KafkaConsumer consumer=new KafkaConsumer("iis-metrics-test");
 		consumer.start();
 	}
 	
@@ -47,7 +50,7 @@ public class KafkaConsumer extends Thread{
 		Properties props = new Properties();
 		props.put("zookeeper.connect", 			  "192.168.81.232:2181,192.168.81.231:2181");
 		props.put("group.id", 					  "group");
-		props.put("autooffset.reset", 			  "largest");
+		props.put("auto.offset.reset", 			  "largest");
 		props.put("zookeeper.session.timeout.ms", "15000");
 		props.put("zookeeper.sync.time.ms", 	  "3000");
 		props.put("auto.commit.interval.ms", 	  "1000");
