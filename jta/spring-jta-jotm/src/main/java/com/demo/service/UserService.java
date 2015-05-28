@@ -16,6 +16,7 @@ import org.enhydra.jdbc.pool.GenericPool;
 import org.enhydra.jdbc.pool.StandardPoolDataSource;
 import org.enhydra.jdbc.pool.StandardXAPoolDataSource;
 import org.enhydra.jdbc.standard.StandardDataSource;
+import org.enhydra.jdbc.standard.StandardXAConnectionHandle;
 import org.enhydra.jdbc.standard.StandardXADataSource;
 import org.objectweb.jotm.TransactionImpl;
 import org.objectweb.jotm.UserTransactionFactory;
@@ -56,6 +57,8 @@ public class UserService {
 	StandardXADataSource ASFDGD;
 	StandardXAPoolDataSource FSDGFDGFD;
 	StandardPoolDataSource asfsdfdd;
+	
+	StandardXAConnectionHandle adsfds;
 
 	@Autowired
 	private UserDao userDao;

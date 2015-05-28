@@ -2,6 +2,7 @@ package com.demo.service;
 
 import java.sql.Connection;
 
+import javax.resource.spi.XATerminator;
 import javax.sql.DataSource;
 import javax.sql.XAConnection;
 import javax.sql.XADataSource;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean;
 import com.demo.dao.LogDao;
 import com.demo.dao.UserDao;
 import com.demo.entity.User;
@@ -29,6 +31,10 @@ public class UserService {
 	
 	DataSource dataSource;
 	Connection connection;
+	
+	AtomikosNonXADataSourceBean asdfsfsd;
+	
+	XATerminator asdsfsd;
 
 	@Autowired
 	private UserDao userDao;
@@ -39,6 +45,6 @@ public class UserService {
 	public void save(User user){
 		userDao.save(user);
 		logDao.save(user);
-		//throw new RuntimeException();
+		throw new RuntimeException();
 	}
 }
