@@ -44,6 +44,6 @@ public class UserService {
 	public void save(User user){
 		userDao.save(user);
 		logDao.save(user);
-		throw new RuntimeException();
+		//throw new RuntimeException();
 	}
 }

@@ -14,7 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.atomikos.icatch.CompositeTransaction;
+import com.atomikos.icatch.imp.CompositeTransactionImp;
 import com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean;
+import com.atomikos.jdbc.nonxa.AtomikosNonXAParticipant;
 import com.demo.dao.LogDao;
 import com.demo.dao.UserDao;
 import com.demo.entity.User;
@@ -35,6 +38,12 @@ public class UserService {
 	AtomikosNonXADataSourceBean asdfsfsd;
 	
 	XATerminator asdsfsd;
+	
+	CompositeTransactionImp  sdfdf;
+	
+	CompositeTransaction sfsdf;
+	
+	AtomikosNonXAParticipant asfsdfd;
 
 	@Autowired
 	private UserDao userDao;
@@ -45,6 +54,6 @@ public class UserService {
 	public void save(User user){
 		userDao.save(user);
 		logDao.save(user);
-		throw new RuntimeException();
+		//throw new RuntimeException();
 	}
 }

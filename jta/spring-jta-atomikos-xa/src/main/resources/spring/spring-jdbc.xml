@@ -21,17 +21,11 @@
         <property name="transactionTimeout" value="300" />  
     </bean>  
   
-    <bean id="atomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager" init-method="init"  destroy-method="close">  
-        <property name="forceShutdown" value="true" />  
-        <property name="transactionTimeout" value="300" />  
-    </bean>
-    
-    <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">  
-        <property name="transactionManager" ref="atomikosTransactionManager" />  
+    <bean id="springTransactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">  
         <property name="userTransaction" ref="atomikosUserTransaction" />   
     </bean>
     
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <tx:annotation-driven transaction-manager="springTransactionManager"/>
     
      <!-- 配置数据源 -->
      <bean id="dataSourceA" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close">
