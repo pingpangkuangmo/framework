@@ -3,6 +3,7 @@ package com.demo.zookeeper;
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 
+import org.apache.jute.Record;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.WatchedEvent;
@@ -11,12 +12,26 @@ import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.Watcher.Event.KeeperState;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.data.Stat;
+import org.apache.zookeeper.server.DataTree;
+import org.apache.zookeeper.server.FinalRequestProcessor;
+import org.apache.zookeeper.server.ServerCnxn;
+import org.apache.zookeeper.server.WatchManager;
+import org.apache.zookeeper.server.auth.AuthenticationProvider;
+import org.apache.zookeeper.server.auth.ProviderRegistry;
 
 public class ZKNodeCRUD implements Watcher{
 
 	private CountDownLatch connectedSemaphone=new CountDownLatch(1);
 	
 	private ZooKeeper zooKeeper;
+	
+	ServerCnxn serverCnxn;
+	WatchManager watchManager;
+	DataTree dataTree;
+	FinalRequestProcessor finalRequestProcessor;
+	AuthenticationProvider authenticationProvider;
+	ProviderRegistry providerRegistry;
+	Record record;
 	
 	private void init() throws IOException{
 		zooKeeper=new ZooKeeper("192.168.126.130:2181",5000,this);
