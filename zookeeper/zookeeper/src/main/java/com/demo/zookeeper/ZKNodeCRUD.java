@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 
 import org.apache.jute.Record;
+import org.apache.zookeeper.ClientCnxn;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.WatchedEvent;
@@ -14,10 +15,18 @@ import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.data.Stat;
 import org.apache.zookeeper.server.DataTree;
 import org.apache.zookeeper.server.FinalRequestProcessor;
+import org.apache.zookeeper.server.NIOServerCnxn;
 import org.apache.zookeeper.server.ServerCnxn;
+import org.apache.zookeeper.server.ZooKeeperServer;
+import org.apache.zookeeper.server.SessionTracker.Session;
 import org.apache.zookeeper.server.WatchManager;
 import org.apache.zookeeper.server.auth.AuthenticationProvider;
 import org.apache.zookeeper.server.auth.ProviderRegistry;
+import org.apache.zookeeper.server.quorum.LearnerHandler;
+import org.apache.zookeeper.server.quorum.QuorumCnxManager;
+import org.apache.zookeeper.server.quorum.QuorumPeer.ServerState;
+import org.apache.zookeeper.server.quorum.QuorumPeerMain;
+import org.apache.zookeeper.server.quorum.Vote;
 
 public class ZKNodeCRUD implements Watcher{
 
@@ -32,6 +41,16 @@ public class ZKNodeCRUD implements Watcher{
 	AuthenticationProvider authenticationProvider;
 	ProviderRegistry providerRegistry;
 	Record record;
+	ClientCnxn clientCnxn;
+	Session session;
+	QuorumPeerMain quorumPeerMain;
+	ZooKeeperServer zooKeeperServer;
+	QuorumCnxManager quorumCnxManager;
+	ServerState serverState;
+	Vote vote;
+	LearnerHandler learnerHandler;
+	NIOServerCnxn nioServerCnxn;
+
 	
 	private void init() throws IOException{
 		zooKeeper=new ZooKeeper("192.168.126.130:2181",5000,this);
