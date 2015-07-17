@@ -18,6 +18,7 @@ import org.apache.zookeeper.server.ServerCnxn;
 import org.apache.zookeeper.server.WatchManager;
 import org.apache.zookeeper.server.auth.AuthenticationProvider;
 import org.apache.zookeeper.server.auth.ProviderRegistry;
+import org.apache.zookeeper.server.quorum.FastLeaderElection;
 import org.apache.zookeeper.server.quorum.QuorumPeerMain;
 
 public class ZKNodeCRUD implements Watcher{
@@ -34,6 +35,7 @@ public class ZKNodeCRUD implements Watcher{
 	ProviderRegistry providerRegistry;
 	Record record;
 	QuorumPeerMain quorumPeerMain;
+	FastLeaderElection fastLeaderElection;
 	
 	private void init() throws IOException{
 		zooKeeper=new ZooKeeper("192.168.126.130:2181",5000,this);
