@@ -13,7 +13,7 @@ public class ZKConstructorSession implements Watcher{
 	private static CountDownLatch connectedSemaphone=new CountDownLatch(1);
 
 	public static void main(String[] args) throws IOException, InterruptedException {
-		ZooKeeper zooKeeper=new ZooKeeper("192.168.126.130:2181",5000,new ZKConstructorSession());
+		ZooKeeper zooKeeper=new ZooKeeper("127.0.0.1:2181",10000,new ZKConstructorSession());
 		System.out.println(zooKeeper.getState());
 		connectedSemaphone.await();
 		System.out.println("ZooKeeper session established");
@@ -22,8 +22,9 @@ public class ZKConstructorSession implements Watcher{
 		System.out.println("sessionId="+sessionId);
 		//zooKeeper=new ZooKeeper("192.168.126.130:2181",5000,new ZKConstructorSession(),1l,"test".getBytes());
 		
-		zooKeeper=new ZooKeeper("192.168.126.130:2181",5000,new ZKConstructorSession(),sessionId,sessionPasswd);
+		//zooKeeper=new ZooKeeper("192.168.126.130:2181",5000,new ZKConstructorSession(),sessionId,sessionPasswd);
 		
+		//Thread.sleep(1000*60);
 		Thread.sleep(Integer.MAX_VALUE);
 	}
 

@@ -1,6 +1,7 @@
 package com.demo.zookeeper;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.concurrent.CountDownLatch;
 
 import org.apache.jute.Record;
@@ -13,6 +14,7 @@ import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.Watcher.Event.KeeperState;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.data.Stat;
+import org.apache.zookeeper.proto.ConnectRequest;
 import org.apache.zookeeper.server.DataTree;
 import org.apache.zookeeper.server.FinalRequestProcessor;
 import org.apache.zookeeper.server.NIOServerCnxn;
@@ -27,6 +29,8 @@ import org.apache.zookeeper.server.quorum.QuorumCnxManager;
 import org.apache.zookeeper.server.quorum.QuorumPeer.ServerState;
 import org.apache.zookeeper.server.quorum.QuorumPeerMain;
 import org.apache.zookeeper.server.quorum.Vote;
+import org.junit.Before;
+import org.junit.Test;
 
 public class ZKNodeCRUD implements Watcher{
 
@@ -50,10 +54,11 @@ public class ZKNodeCRUD implements Watcher{
 	Vote vote;
 	LearnerHandler learnerHandler;
 	NIOServerCnxn nioServerCnxn;
+	ConnectRequest connectRequest;
 
-	
-	private void init() throws IOException{
-		zooKeeper=new ZooKeeper("192.168.126.130:2181",5000,this);
+	@Before
+	public void init() throws IOException{
+		zooKeeper=new ZooKeeper("127.0.0.1:2181",10000,this);
 		System.out.println(zooKeeper.getState());
 		try {
 			connectedSemaphone.await();
@@ -65,11 +70,18 @@ public class ZKNodeCRUD implements Watcher{
 		ZKNodeCRUD zkNodeCRUD=new ZKNodeCRUD();
 		zkNodeCRUD.init();
 		
-		String path1=zkNodeCRUD.createNode("/test","test",CreateMode.PERSISTENT);
+		String path1=zkNodeCRUD.createNode("/test/m/abc/sql","test",CreateMode.PERSISTENT_SEQUENTIAL);
 		System.out.println("success create znode:"+path1);
+		zkNodeCRUD.getChildren("/test");
 		
-		String path2=zkNodeCRUD.createNode("/test/n","testn",CreateMode.PERSISTENT_SEQUENTIAL);
+		String path2=zkNodeCRUD.createNode("/test/m/abc/dh2","testn",CreateMode.PERSISTENT);
 		System.out.println("success create znode:"+path2);
+	}
+	
+	@Test
+	public void testSetData() throws UnsupportedEncodingException, KeeperException, InterruptedException{
+		setData("/test","a1");
+		setData("/test","a2");
 	}
 
 	@Override
@@ -78,6 +90,10 @@ public class ZKNodeCRUD implements Watcher{
 		if(KeeperState.SyncConnected==event.getState()){
 			connectedSemaphone.countDown();
 		}
+	}
+	
+	public void setData(String path,String content) throws KeeperException, InterruptedException, UnsupportedEncodingException{
+		 zooKeeper.setData(path,content.getBytes("UTF-8"),-1);
 	}
 	
 	public String createNode(String path,String content,CreateMode createMode) throws KeeperException, InterruptedException{
