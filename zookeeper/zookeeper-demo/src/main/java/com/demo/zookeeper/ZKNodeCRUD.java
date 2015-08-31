@@ -24,6 +24,7 @@ import org.apache.zookeeper.server.SessionTracker.Session;
 import org.apache.zookeeper.server.WatchManager;
 import org.apache.zookeeper.server.auth.AuthenticationProvider;
 import org.apache.zookeeper.server.auth.ProviderRegistry;
+import org.apache.zookeeper.server.quorum.FastLeaderElection;
 import org.apache.zookeeper.server.quorum.LearnerHandler;
 import org.apache.zookeeper.server.quorum.QuorumCnxManager;
 import org.apache.zookeeper.server.quorum.QuorumPeer.ServerState;
@@ -48,6 +49,7 @@ public class ZKNodeCRUD implements Watcher{
 	ClientCnxn clientCnxn;
 	Session session;
 	QuorumPeerMain quorumPeerMain;
+	FastLeaderElection fastLeaderElection;
 	ZooKeeperServer zooKeeperServer;
 	QuorumCnxManager quorumCnxManager;
 	ServerState serverState;
@@ -58,7 +60,7 @@ public class ZKNodeCRUD implements Watcher{
 
 	@Before
 	public void init() throws IOException{
-		zooKeeper=new ZooKeeper("127.0.0.1:2181",10000,this);
+		zooKeeper=new ZooKeeper("192.168.126.130:2181",5000,this);
 		System.out.println(zooKeeper.getState());
 		try {
 			connectedSemaphone.await();
