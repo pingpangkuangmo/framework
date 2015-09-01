@@ -20,10 +20,67 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+    
+    <!-- spring -->
     <dependency>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-context</artifactId>
 		<version>4.2.0.RELEASE</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
+		<version>4.2.0.RELEASE</version>
+	</dependency>
+	
+	<!-- SLF4J -->
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-api</artifactId>
+		<version>1.7.12</version>
+	</dependency>
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-log4j12</artifactId>
+		<version>1.7.12</version>
+	</dependency>
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.17</version>
+	</dependency>
+	
+	<!-- zookeeper -->
+	<dependency>
+		<groupId>org.apache.zookeeper</groupId>
+		<artifactId>zookeeper</artifactId>
+		<version>3.4.6</version>
+	</dependency>
+	
+	<!-- netty -->
+	<dependency>
+		<groupId>io.netty</groupId>
+		<artifactId>netty-all</artifactId>
+		<version>4.0.30.Final</version>
+	</dependency>
+	
+	<!-- objenesis -->
+	<dependency>
+		<groupId>org.objenesis</groupId>
+		<artifactId>objenesis</artifactId>
+		<version>2.2</version>
+	</dependency>
+	
+	<!-- protostuff -->
+	<dependency>
+		<groupId>com.dyuproject.protostuff</groupId>
+		<artifactId>protostuff-core</artifactId>
+		<version>1.0.9</version>
+	</dependency>
+	<dependency>
+		<groupId>com.dyuproject.protostuff</groupId>
+		<artifactId>protostuff-runtime</artifactId>
+		<version>1.0.9</version>
 	</dependency>
 
   </dependencies>

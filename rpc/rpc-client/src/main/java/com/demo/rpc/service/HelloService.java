@@ -1,4 +1,4 @@
-package com.demo.rpc.server.service;
+package com.demo.rpc.service;
 
 public interface HelloService {
 
