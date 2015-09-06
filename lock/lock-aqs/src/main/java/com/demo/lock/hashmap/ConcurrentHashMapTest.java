@@ -11,5 +11,6 @@ public class ConcurrentHashMapTest {
 	@Test
 	public void testPut(){
 		map.put("key1","value1");
+		map.get("key1");
 	}
 }
