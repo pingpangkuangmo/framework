@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ForkJoinTask;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
@@ -27,4 +28,6 @@ public class AQSTest {
 	
 	ArrayList<?> arrayList;
 	CopyOnWriteArrayList<?> copyOnWriteArrayList;
+	
+	AtomicInteger atomicInteger;
 }
