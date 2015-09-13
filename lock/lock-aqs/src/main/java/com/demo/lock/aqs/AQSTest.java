@@ -13,6 +13,8 @@ import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import com.demo.lock.aqs.fair.FairAndUnfairTest;
+
 public class AQSTest {
 
 	Lock lock;
