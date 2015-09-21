@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
@@ -32,4 +33,6 @@ public class AQSTest {
 	CopyOnWriteArrayList<?> copyOnWriteArrayList;
 	
 	AtomicInteger atomicInteger;
+	
+	AbstractQueuedSynchronizer asa;
 }
