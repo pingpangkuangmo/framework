@@ -9,6 +9,7 @@ import com.alibaba.dubbo.common.bytecode.Wrapper;
 import com.alibaba.dubbo.config.spring.ServiceBean;
 import com.alibaba.dubbo.remoting.Transporter;
 import com.alibaba.dubbo.rpc.Protocol;
+import com.alibaba.dubbo.rpc.ProxyFactory;
 
 public class StartServer {
 	
@@ -17,6 +18,7 @@ public class StartServer {
 	Protocol protocol;
 	Transporter transporter;
 	Wrapper wrapper;
+	ProxyFactory proxyFactory;
 
 	public static void main(String[] args) throws IOException{
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"spring-context.xml"});  
