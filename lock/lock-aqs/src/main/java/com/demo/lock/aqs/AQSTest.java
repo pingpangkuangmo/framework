@@ -35,4 +35,6 @@ public class AQSTest {
 	AtomicInteger atomicInteger;
 	
 	AbstractQueuedSynchronizer asa;
+	
+	Object object;
 }
