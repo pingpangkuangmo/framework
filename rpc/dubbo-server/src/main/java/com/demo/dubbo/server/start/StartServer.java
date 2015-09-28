@@ -7,6 +7,7 @@ import org.springframework.beans.factory.xml.NamespaceHandler;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.alibaba.dubbo.common.bytecode.Wrapper;
+import com.alibaba.dubbo.common.extension.ExtensionLoader;
 import com.alibaba.dubbo.config.ReferenceConfig;
 import com.alibaba.dubbo.config.ServiceConfig;
 import com.alibaba.dubbo.config.spring.ReferenceBean;
@@ -31,6 +32,7 @@ public class StartServer {
 	ProxyFactory proxyFactory;
 	Directory<?> directory;
 	RegistryFactory registryFactory;
+	ExtensionLoader<?>  extensionLoader;
 
 	public static void main(String[] args) throws IOException{
 		@SuppressWarnings("resource")
