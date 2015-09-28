@@ -2,10 +2,14 @@ package com.demo.dubbo.server.start;
 
 import java.io.IOException;
 
+import org.springframework.beans.factory.xml.BeanDefinitionParser;
 import org.springframework.beans.factory.xml.NamespaceHandler;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.alibaba.dubbo.common.bytecode.Wrapper;
+import com.alibaba.dubbo.config.ReferenceConfig;
+import com.alibaba.dubbo.config.ServiceConfig;
+import com.alibaba.dubbo.config.spring.ReferenceBean;
 import com.alibaba.dubbo.config.spring.ServiceBean;
 import com.alibaba.dubbo.registry.RegistryFactory;
 import com.alibaba.dubbo.remoting.Transporter;
@@ -16,7 +20,11 @@ import com.alibaba.dubbo.rpc.cluster.Directory;
 public class StartServer {
 	
 	NamespaceHandler namespaceHandler;
+	BeanDefinitionParser beanDefinitionParser;
 	ServiceBean<?> serviceBean;
+	ServiceConfig<?> serviceConfig;
+	ReferenceBean<?> reference;
+	ReferenceConfig<?> referenceConfig;
 	Protocol protocol;
 	Transporter transporter;
 	Wrapper wrapper;
