@@ -32,5 +32,9 @@
    <dubbo:service interface="com.demo.dubbo.service.HelloService" ref="helloService" />
    
    <bean id="helloService" class="com.demo.dubbo.server.serviceimpl.HelloServiceImpl"/>
+   
+   <dubbo:service interface="com.demo.dubbo.service.SumService" ref="sumService"/>
+   
+   <bean id="sumService" class="com.demo.dubbo.server.serviceimpl.SumServiceImpl"/>
 	
 </beans>
