@@ -14,9 +14,11 @@ import com.alibaba.dubbo.config.spring.ReferenceBean;
 import com.alibaba.dubbo.config.spring.ServiceBean;
 import com.alibaba.dubbo.registry.RegistryFactory;
 import com.alibaba.dubbo.remoting.Transporter;
+import com.alibaba.dubbo.rpc.Invoker;
 import com.alibaba.dubbo.rpc.Protocol;
 import com.alibaba.dubbo.rpc.ProxyFactory;
 import com.alibaba.dubbo.rpc.cluster.Directory;
+import com.alibaba.dubbo.rpc.protocol.dubbo.DubboInvoker;
 
 public class StartServer {
 	
@@ -33,6 +35,8 @@ public class StartServer {
 	Directory<?> directory;
 	RegistryFactory registryFactory;
 	ExtensionLoader<?>  extensionLoader;
+	DubboInvoker<?> dubboInvoker;
+	Invoker<?> invoker;
 
 	public static void main(String[] args) throws IOException{
 		@SuppressWarnings("resource")
