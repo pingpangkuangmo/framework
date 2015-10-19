@@ -13,11 +13,17 @@ import com.alibaba.dubbo.config.ServiceConfig;
 import com.alibaba.dubbo.config.spring.ReferenceBean;
 import com.alibaba.dubbo.config.spring.ServiceBean;
 import com.alibaba.dubbo.registry.RegistryFactory;
+import com.alibaba.dubbo.remoting.Channel;
+import com.alibaba.dubbo.remoting.ChannelHandler;
 import com.alibaba.dubbo.remoting.Transporter;
+import com.alibaba.dubbo.remoting.transport.AbstractClient;
+import com.alibaba.dubbo.remoting.transport.AbstractEndpoint;
+import com.alibaba.dubbo.remoting.transport.netty.NettyHandler;
 import com.alibaba.dubbo.rpc.Invoker;
 import com.alibaba.dubbo.rpc.Protocol;
 import com.alibaba.dubbo.rpc.ProxyFactory;
 import com.alibaba.dubbo.rpc.cluster.Directory;
+import com.alibaba.dubbo.rpc.protocol.dubbo.DubboExporter;
 import com.alibaba.dubbo.rpc.protocol.dubbo.DubboInvoker;
 
 public class StartServer {
@@ -37,6 +43,12 @@ public class StartServer {
 	ExtensionLoader<?>  extensionLoader;
 	DubboInvoker<?> dubboInvoker;
 	Invoker<?> invoker;
+	DubboExporter<?> dubboExporter;
+	NettyHandler nettyHandler;
+	AbstractEndpoint abstractEndpoint;
+	Channel channel;
+	ChannelHandler channelHandler;
+	AbstractClient abstractClient;
 
 	public static void main(String[] args) throws IOException{
 		@SuppressWarnings("resource")
