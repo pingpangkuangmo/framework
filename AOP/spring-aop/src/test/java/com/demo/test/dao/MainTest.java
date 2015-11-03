@@ -19,6 +19,7 @@ import org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator;
 import org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator;
 import org.springframework.beans.factory.xml.NamespaceHandler;
 import org.springframework.cglib.proxy.Callback;
+import org.springframework.web.servlet.DispatcherServlet;
 
 @Aspect
 public class MainTest {
@@ -40,6 +41,7 @@ public class MainTest {
 	Proxy proxy;
 	MethodInterceptor aas;
 	Callback callback;
+	DispatcherServlet DispatcherServlet;
 
 	@org.aspectj.lang.annotation.Pointcut
 	@Before(value = "")

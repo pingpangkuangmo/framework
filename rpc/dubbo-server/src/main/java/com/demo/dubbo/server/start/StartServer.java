@@ -8,6 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.alibaba.dubbo.common.bytecode.Wrapper;
 import com.alibaba.dubbo.common.extension.ExtensionLoader;
+import com.alibaba.dubbo.common.serialize.Serialization;
 import com.alibaba.dubbo.config.ReferenceConfig;
 import com.alibaba.dubbo.config.ServiceConfig;
 import com.alibaba.dubbo.config.spring.ReferenceBean;
@@ -15,9 +16,13 @@ import com.alibaba.dubbo.config.spring.ServiceBean;
 import com.alibaba.dubbo.registry.RegistryFactory;
 import com.alibaba.dubbo.remoting.Channel;
 import com.alibaba.dubbo.remoting.ChannelHandler;
+import com.alibaba.dubbo.remoting.Codec2;
 import com.alibaba.dubbo.remoting.Transporter;
+import com.alibaba.dubbo.remoting.exchange.ExchangeServer;
+import com.alibaba.dubbo.remoting.exchange.Exchanger;
 import com.alibaba.dubbo.remoting.transport.AbstractClient;
 import com.alibaba.dubbo.remoting.transport.AbstractEndpoint;
+import com.alibaba.dubbo.remoting.transport.AbstractServer;
 import com.alibaba.dubbo.remoting.transport.netty.NettyHandler;
 import com.alibaba.dubbo.rpc.Invoker;
 import com.alibaba.dubbo.rpc.Protocol;
@@ -49,6 +54,11 @@ public class StartServer {
 	Channel channel;
 	ChannelHandler channelHandler;
 	AbstractClient abstractClient;
+	AbstractServer abstractServer;
+	ExchangeServer exchangeServer;
+	Exchanger exchanger;
+	Serialization serialization;
+	Codec2 codec2;
 
 	public static void main(String[] args) throws IOException{
 		@SuppressWarnings("resource")
