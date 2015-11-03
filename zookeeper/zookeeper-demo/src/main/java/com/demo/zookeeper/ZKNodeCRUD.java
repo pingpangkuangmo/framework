@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.concurrent.CountDownLatch;
 
+import org.apache.curator.utils.ZookeeperFactory;
 import org.apache.jute.Record;
 import org.apache.zookeeper.ClientCnxn;
 import org.apache.zookeeper.CreateMode;
@@ -57,6 +58,7 @@ public class ZKNodeCRUD implements Watcher{
 	LearnerHandler learnerHandler;
 	NIOServerCnxn nioServerCnxn;
 	ConnectRequest connectRequest;
+	ZookeeperFactory zookeeperFactory;
 
 	@Before
 	public void init() throws IOException{
