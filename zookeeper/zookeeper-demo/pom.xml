@@ -33,10 +33,10 @@
 	</dependency>
 	
 	<dependency>
-	<groupId>com.jcraft</groupId>
-	<artifactId>jsch.agentproxy.sshagent</artifactId>
-	<version>0.0.7</version>
-</dependency>
+		<groupId>org.apache.curator</groupId>
+		<artifactId>curator-framework</artifactId>
+		<version>2.9.0</version>
+	</dependency>
 	
     
   </dependencies>
