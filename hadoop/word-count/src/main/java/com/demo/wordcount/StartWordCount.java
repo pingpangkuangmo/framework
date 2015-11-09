@@ -14,10 +14,16 @@ import org.apache.hadoop.util.GenericOptionsParser;
 public class StartWordCount {
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-		Configuration conf = new Configuration(); 
+		Configuration conf = new Configuration();
+		conf.addResource("core-site.xml");
+		conf.addResource("hdfs-site.xml");
         String[] otherArgs = new GenericOptionsParser(conf,args).getRemainingArgs();
         if(otherArgs.length != 2){
-            System.err.println("Usage:wordcount <in> <out>");  
+            System.err.println("Usage:wordcount <in> <out>");
+            System.out.println("current args are:");
+            for(String arg:args){
+            	System.out.println(arg);
+            }
             System.exit(2);  
         }
         
