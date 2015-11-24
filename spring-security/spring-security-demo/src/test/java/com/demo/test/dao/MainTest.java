@@ -60,6 +60,8 @@ public class MainTest {
 	
 	FilterChainProxy filterChainProxy;
 	
+	//SpringSecurityFilterChain ads;
+	
 	public void test(){
 		
 	}

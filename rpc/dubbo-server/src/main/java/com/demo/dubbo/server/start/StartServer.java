@@ -8,6 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.alibaba.dubbo.common.bytecode.Wrapper;
 import com.alibaba.dubbo.common.extension.ExtensionLoader;
+import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.serialize.Serialization;
 import com.alibaba.dubbo.config.ReferenceConfig;
 import com.alibaba.dubbo.config.ServiceConfig;
@@ -59,6 +60,7 @@ public class StartServer {
 	Exchanger exchanger;
 	Serialization serialization;
 	Codec2 codec2;
+	Logger logger;
 
 	public static void main(String[] args) throws IOException{
 		@SuppressWarnings("resource")

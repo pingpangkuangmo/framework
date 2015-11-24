@@ -5,8 +5,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class TcpClient {
+	
+	LinkedBlockingQueue<?> asd;
+	InputStream in;
 
 	public static void main(String[] args) throws UnknownHostException, IOException, InterruptedException{
 		 	Socket socket = null;  
