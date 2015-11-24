@@ -17,6 +17,8 @@
     http://www.springframework.org/schema/ldap/spring-ldap.xsd
 	http://www.springframework.org/schema/tx   
     http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+    
+    <context:property-placeholder location="classpath:config.properties"   ignore-unresolvable="true"/>
        
        
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
@@ -47,13 +49,13 @@
 	    <!--false表示等上一个任务执行完后再开启新的任务-->
 	    <property name="concurrent" value="false"/>
 	    <property name="targetObject">
-	        <ref bean="taskJob"/>
+	        <ref bean="serverWashJob"/>
 	    </property>
 	    <property name="targetMethod">
 	        <value>hello</value>
 	    </property>
 	</bean>
 	
-	<bean id="taskJob" class="com.demo.quartz.base.task.HelloTask"/>
+	<!-- <bean id="taskJob" class="com.demo.quartz.base.task.HelloTask"/> -->
 	
 </beans>
