@@ -18,6 +18,7 @@ import com.alibaba.dubbo.registry.RegistryFactory;
 import com.alibaba.dubbo.remoting.Channel;
 import com.alibaba.dubbo.remoting.ChannelHandler;
 import com.alibaba.dubbo.remoting.Codec2;
+import com.alibaba.dubbo.remoting.Server;
 import com.alibaba.dubbo.remoting.Transporter;
 import com.alibaba.dubbo.remoting.exchange.ExchangeServer;
 import com.alibaba.dubbo.remoting.exchange.Exchanger;
@@ -61,6 +62,7 @@ public class StartServer {
 	Serialization serialization;
 	Codec2 codec2;
 	Logger logger;
+	Server server;
 
 	public static void main(String[] args) throws IOException{
 		@SuppressWarnings("resource")
