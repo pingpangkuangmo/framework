@@ -43,6 +43,11 @@
 		<artifactId>spring-tx</artifactId>
 		<version>4.0.5.RELEASE</version>
 	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-jdbc</artifactId>
+		<version>4.0.5.RELEASE</version>
+	</dependency>
 	
     
     <!-- quartz -->
@@ -58,6 +63,32 @@
 		<artifactId>spring-support</artifactId>
 		<version>2.0.8</version>
 	</dependency>
+	
+	<dependency>
+    	<groupId>commons-httpclient</groupId>
+    	<artifactId>commons-httpclient</artifactId>
+    	<version>3.1</version>
+    </dependency>
+	
+	<dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>fastjson</artifactId>
+		<version>1.2.7</version>
+	</dependency>
+	
+	<dependency>
+    	<groupId>commons-io</groupId>
+    	<artifactId>commons-io</artifactId>
+    	<version>2.4</version>
+	</dependency>
+	
+	<dependency>
+    	<groupId>tools.sysdev.python.joblog.client</groupId>
+    	<artifactId>JobLogClient</artifactId>
+    	<version>0.1-test</version>
+	</dependency>
+	
+	
 	
     
   </dependencies>
