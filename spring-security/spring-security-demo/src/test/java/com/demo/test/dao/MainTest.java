@@ -60,6 +60,10 @@ public class MainTest {
 	
 	FilterChainProxy filterChainProxy;
 	
+	org.springframework.security.taglibs.authz.AuthenticationTag tag;
+	
+	//org.apache.catalina.session.StandardManager manager;
+	
 	//SpringSecurityFilterChain ads;
 	
 	public void test(){

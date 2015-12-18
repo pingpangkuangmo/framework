@@ -24,11 +24,12 @@ public class MetaqProducer {
 	public static void main(String[] args) throws MetaClientException{
 		final MetaClientConfig metaClientConfig = new MetaClientConfig();
         final ZKConfig zkConfig = new ZKConfig();
-        zkConfig.zkConnect = "192.168.126.131:2181";
+        zkConfig.zkConnect = "192.168.49.208:2181,192.168.49.207:2181,192.168.49.206:2181";
+        zkConfig.zkRoot="/ops/sysdev/metaq";
         metaClientConfig.setZkConfig(zkConfig);
         MessageSessionFactory sessionFactory = new MetaMessageSessionFactory(metaClientConfig);
         MessageProducer producer = sessionFactory.createProducer();
-        final String topic = "test";
+        final String topic = "testlg";
         producer.publish(topic);
         Long count=0L;
         while (true) {
@@ -38,7 +39,7 @@ public class MetaqProducer {
 				if (!sendResult.isSuccess()) {
 					logger.error("Send message failed,error message:" + sendResult.getErrorMessage());
 				}else {
-					logger.info("Send message successfully,sent to " + sendResult.getPartition());
+					logger.info("Send message successfully,sent to " +sendResult.getPartition());
 				}
 				Thread.sleep(1000);
 			} catch (Exception e) {
