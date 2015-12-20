@@ -1,5 +1,6 @@
 package com.demo.metaq.base;
 
+import java.io.UnsupportedEncodingException;
 import java.util.concurrent.Executor;
 
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import com.taobao.metamorphosis.client.MetaMessageSessionFactory;
 import com.taobao.metamorphosis.client.consumer.ConsumerConfig;
 import com.taobao.metamorphosis.client.consumer.MessageConsumer;
 import com.taobao.metamorphosis.client.consumer.MessageListener;
+import com.taobao.metamorphosis.cluster.Partition;
 import com.taobao.metamorphosis.exception.MetaClientException;
 import com.taobao.metamorphosis.utils.ZkUtils.ZKConfig;
 
@@ -22,16 +24,26 @@ public class MetaqConsumer {
 	public static void main(String[] args) throws MetaClientException{
 		final MetaClientConfig metaClientConfig = new MetaClientConfig();
         final ZKConfig zkConfig = new ZKConfig();
-        zkConfig.zkConnect = "192.168.126.131:2181";
+        zkConfig.zkConnect = "192.168.49.208:2181,192.168.49.207:2181,192.168.49.206:2181";
+        zkConfig.zkRoot="/ops/sysdev/metaq";
         metaClientConfig.setZkConfig(zkConfig);
         MessageSessionFactory sessionFactory = new MetaMessageSessionFactory(metaClientConfig);
-        final String topic = "test";
-        final String group = "meta-example";
+        final String topic = "testlg";
+        final String group = "testlg-group1";
         MessageConsumer consumer = sessionFactory.createConsumer(new ConsumerConfig(group));
         consumer.subscribe(topic, 1024 * 1024, new MessageListener() {
 
             public void recieveMessages(Message message) {
-                logger.info("Receive message " + new String(message.getData()));
+            	Partition p=message.getPartition();
+            	System.out.println(p.getBrokerId()+";"+p.getPartition());
+                /*try {
+                	String msg=new String(message.getData(),"gbk");
+                	if(msg.contains("CN2DC1")){
+                		logger.info(msg);
+                	}
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}*/
             }
             public Executor getExecutor() {
                 return null;
