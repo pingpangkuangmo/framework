@@ -11,14 +11,13 @@ import org.junit.Test;
 
 public class DistributedAtomicLongTest {
 	
-	CuratorFramework client;
-	
+	private CuratorFramework client;
+
 	@Before
-	public void init(){
-		System.out.println("start connect zk...");
+	public void init() throws Exception{
 		CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder();  
 		//fluent style  
-		String namespace = "cluster-worker";  
+		String namespace = "cms/DistributedAtomicLong";  
 		client = builder.connectString("127.0.0.1:2181")  
 		        .sessionTimeoutMs(30000)  
 		        .connectionTimeoutMs(30000)  
@@ -28,19 +27,36 @@ public class DistributedAtomicLongTest {
 		        .defaultData(null)  
 		        .build();  
 		client.start();
-		System.out.println("connected zk!");
+		client.createContainers(namespace);
 	}
-
+	
 	@Test
-	public void testDistributedAdd(){
+	public void testAdd(){
 		try {
-			DistributedAtomicLong distributedAtomicLong=new DistributedAtomicLong(client,"/cms/distributedAtomicLong/appId",new RetryNTimes(3,1000));
-			distributedAtomicLong.increment();
-			AtomicValue<Long> longObj=distributedAtomicLong.get();
-			System.out.println(longObj.preValue());
-			System.out.println(longObj.postValue());
+			DistributedAtomicLong distributedAtomicLong=new DistributedAtomicLong(client, "/app",new RetryNTimes(3, 1000));
+			distributedAtomicLong.initialize(100000L);
+			AtomicValue<Long> value=distributedAtomicLong.get();
+			System.out.println("post:"+value.postValue());
+			value=distributedAtomicLong.increment();
+			System.out.println("post:"+value.postValue());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
+	
+	@Test
+	public void testSet(){
+		try {
+			DistributedAtomicLong distributedAtomicLong=new DistributedAtomicLong(client, "/app",new RetryNTimes(3, 1000));
+			distributedAtomicLong.forceSet(50L);
+			AtomicValue<Long> value=distributedAtomicLong.get();
+			System.out.println("post:"+value.postValue());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 }
