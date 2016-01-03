@@ -22,7 +22,9 @@ public class HbaseDemo {
 		
 		HBaseAdmin admin=new HBaseAdmin(config);
 		
-		HTableDescriptor htd=new HTableDescriptor("test");
+		String tableName="test1";
+		
+		HTableDescriptor htd=new HTableDescriptor(tableName);
 		HColumnDescriptor hcd=new HColumnDescriptor("data");
 		htd.addFamily(hcd);
 		
@@ -33,7 +35,7 @@ public class HbaseDemo {
 			System.out.println(item.getNameAsString());
 		}
 		
-		HTable table=new HTable(config,"test");
+		HTable table=new HTable(config,tableName);
 		
 		byte[] row1=Bytes.toBytes("row1");
 		Put put=new Put(row1);
@@ -53,7 +55,7 @@ public class HbaseDemo {
 		}
 		resultScanner.close();
 		
-		//admin.disableTable("test");
-		//admin.deleteTable("test");
+		//admin.disableTable(tableName);
+		//admin.deleteTable(tableName);
 	}
 }
