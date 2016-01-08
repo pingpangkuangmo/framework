@@ -29,7 +29,7 @@ public class MetaqProducer {
         metaClientConfig.setZkConfig(zkConfig);
         MessageSessionFactory sessionFactory = new MetaMessageSessionFactory(metaClientConfig);
         MessageProducer producer = sessionFactory.createProducer();
-        final String topic = "testlg";
+        final String topic = "test1";
         producer.publish(topic);
         Long count=0L;
         while (true) {

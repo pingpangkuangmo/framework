@@ -17,8 +17,8 @@ public class DistributedAtomicLongTest {
 	public void init() throws Exception{
 		CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder();  
 		//fluent style  
-		String namespace = "cms/DistributedAtomicLong";  
-		client = builder.connectString("127.0.0.1:2181")  
+		String namespace = "ops/sysdev/cms";  
+		client = builder.connectString("10.2.27.122:6380")  
 		        .sessionTimeoutMs(30000)  
 		        .connectionTimeoutMs(30000)  
 		        .canBeReadOnly(false)  
@@ -33,7 +33,7 @@ public class DistributedAtomicLongTest {
 	@Test
 	public void testAdd(){
 		try {
-			DistributedAtomicLong distributedAtomicLong=new DistributedAtomicLong(client, "/app",new RetryNTimes(3, 1000));
+			DistributedAtomicLong distributedAtomicLong=new DistributedAtomicLong(client, "/DistributedAtomicLong/app",new RetryNTimes(3, 1000));
 			distributedAtomicLong.initialize(100000L);
 			AtomicValue<Long> value=distributedAtomicLong.get();
 			System.out.println("post:"+value.postValue());
@@ -48,7 +48,7 @@ public class DistributedAtomicLongTest {
 	@Test
 	public void testSet(){
 		try {
-			DistributedAtomicLong distributedAtomicLong=new DistributedAtomicLong(client, "/app",new RetryNTimes(3, 1000));
+			DistributedAtomicLong distributedAtomicLong=new DistributedAtomicLong(client, "/DistributedAtomicLong/app",new RetryNTimes(3, 1000));
 			distributedAtomicLong.forceSet(50L);
 			AtomicValue<Long> value=distributedAtomicLong.get();
 			System.out.println("post:"+value.postValue());
@@ -57,6 +57,5 @@ public class DistributedAtomicLongTest {
 		}
 		
 	}
-	
 	
 }
