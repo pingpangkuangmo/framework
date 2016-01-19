@@ -28,7 +28,9 @@ public class HbaseDemo {
 		HColumnDescriptor hcd=new HColumnDescriptor("data");
 		htd.addFamily(hcd);
 		
-		admin.createTable(htd);
+		if(!admin.tableExists(tableName)){
+			admin.createTable(htd);
+		}
 		
 		TableName[] tableNames=admin.listTableNames();
 		for(TableName item:tableNames){

@@ -1,5 +1,6 @@
 package com.demo.yarn;
 
+import org.apache.hadoop.mapreduce.v2.app.MRAppMaster;
 import org.apache.hadoop.yarn.event.AsyncDispatcher;
 import org.apache.hadoop.yarn.server.nodemanager.ContainerExecutor;
 import org.apache.hadoop.yarn.server.nodemanager.NodeHealthCheckerService;
@@ -91,5 +92,5 @@ public class Main {
 	Container container;
 	
 	//YARN MRAppMaster分析
-	
+	MRAppMaster mrAppMaster;
 }
