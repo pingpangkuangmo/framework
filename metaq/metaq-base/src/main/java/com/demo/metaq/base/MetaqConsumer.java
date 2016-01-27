@@ -1,5 +1,6 @@
 package com.demo.metaq.base;
 
+import java.io.UnsupportedEncodingException;
 import java.util.concurrent.Executor;
 
 import org.slf4j.Logger;
@@ -27,22 +28,24 @@ public class MetaqConsumer {
         zkConfig.zkRoot="/ops/sysdev/metaq";
         metaClientConfig.setZkConfig(zkConfig);
         MessageSessionFactory sessionFactory = new MetaMessageSessionFactory(metaClientConfig);
-        final String topic = "test1";
+        /*final String topic = "test1";
+        final String group = "testlg-group1";*/
+        final String topic = "sysloglv";
         final String group = "testlg-group1";
         MessageConsumer consumer = sessionFactory.createConsumer(new ConsumerConfig(group));
         consumer.subscribe(topic, 1024 * 1024, new MessageListener() {
 
             public void recieveMessages(Message message) {
             	Partition p=message.getPartition();
-            	System.out.println(p.getBrokerId()+";"+p.getPartition());
-                /*try {
+            	//System.out.println(p.getBrokerId()+";"+p.getPartition());
+                try {
                 	String msg=new String(message.getData(),"gbk");
-                	if(msg.contains("CN2DC1")){
+                	if(msg.contains("CN1DC6")/* && msg.contains("1226")*/){
                 		logger.info(msg);
                 	}
 				} catch (UnsupportedEncodingException e) {
 					e.printStackTrace();
-				}*/
+				}
             }
             public Executor getExecutor() {
                 return null;
