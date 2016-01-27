@@ -4,7 +4,6 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
-import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Get;
 import org.apache.hadoop.hbase.client.HBaseAdmin;
 import org.apache.hadoop.hbase.client.HTable;
@@ -16,32 +15,35 @@ import org.apache.hadoop.hbase.util.Bytes;
 
 public class HbaseDemo {
 
-	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws Exception{
-		Configuration config=HBaseConfiguration.create();
+		Configuration config1=HBaseConfiguration.create();
+		
+		Configuration config = new Configuration();
+		config.addResource("hbase-site.xml");
 		
 		HBaseAdmin admin=new HBaseAdmin(config);
 		
-		String tableName="test1";
-		
+		String tableName="test";
 		HTableDescriptor htd=new HTableDescriptor(tableName);
 		HColumnDescriptor hcd=new HColumnDescriptor("data");
 		htd.addFamily(hcd);
 		
-		admin.createTable(htd);
+		if(!admin.tableExists(tableName)){
+			admin.createTable(htd);
+		}
 		
-		TableName[] tableNames=admin.listTableNames();
-		for(TableName item:tableNames){
+		HTableDescriptor[] tableNames=admin.listTables();
+		System.out.println("list hbase tables:");
+		for(HTableDescriptor item:tableNames){
 			System.out.println(item.getNameAsString());
 		}
 		
 		HTable table=new HTable(config,tableName);
 		
-		byte[] row1=Bytes.toBytes("row1");
+		byte[] row1=Bytes.toBytes("row3");
 		Put put=new Put(row1);
 		byte[] dataBytes=Bytes.toBytes("data");
 		put.add(dataBytes,Bytes.toBytes("1"),Bytes.toBytes("value1"));
-		
 		table.put(put);
 		
 		Get get=new Get(row1);
@@ -55,7 +57,7 @@ public class HbaseDemo {
 		}
 		resultScanner.close();
 		
-		//admin.disableTable(tableName);
-		//admin.deleteTable(tableName);
+		//admin.disableTable("test");
+		//admin.deleteTable("test");
 	}
 }

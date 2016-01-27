@@ -12,6 +12,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <hbase.version>0.94.2-cdh4.2.1</hbase.version>
+	<hadoop-common.version>2.0.0-cdh4.3.0</hadoop-common.version>
   </properties>
 
   <dependencies>
@@ -23,15 +25,51 @@
     </dependency>
     
     <dependency>
-		<groupId>org.apache.hbase</groupId>
-		<artifactId>hbase-client</artifactId>
-		<version>1.1.2</version>
+		<groupId>org.apache.hadoop</groupId>
+		<artifactId>hadoop-common</artifactId>
+		<version>${hadoop-common.version}</version>
+	</dependency>
+    
+    <dependency>
+		<groupId>org.apache.hadoop</groupId>
+		<artifactId>hadoop-hdfs</artifactId>
+		<version>${hadoop-common.version}</version>
+	</dependency>
+    
+    <dependency>
+		<groupId>org.apache.hadoop</groupId>
+		<artifactId>hadoop-client</artifactId>
+		<version>${hadoop-common.version}</version>
 	</dependency>
 	
 	<dependency>
+		<groupId>org.apache.hadoop</groupId>
+		<artifactId>hadoop-mapreduce-client-core</artifactId>
+		<version>${hadoop-common.version}</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.apache.hadoop</groupId>
+		<artifactId>hadoop-yarn-common</artifactId>
+		<version>${hadoop-common.version}</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.apache.hadoop</groupId>
+		<artifactId>hadoop-yarn-api</artifactId>
+		<version>${hadoop-common.version}</version>
+	</dependency>
+	
+    <dependency>
 		<groupId>org.apache.hbase</groupId>
-		<artifactId>hbase-common</artifactId>
-		<version>1.1.1</version>
+		<artifactId>hbase</artifactId>
+		<version>${hbase.version}</version>
+		<exclusions>
+			<exclusion>
+				<groupId>org.apache.zookeeper</groupId>
+				<artifactId>zookeeper</artifactId>
+			</exclusion>
+		</exclusions>
 	</dependency>
 	
     
