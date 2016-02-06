@@ -2,11 +2,8 @@ package com.demo.kafka;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
-import java.util.Random;
 
 import com.alibaba.fastjson.JSON;
 
@@ -19,7 +16,7 @@ public class KafkaProducer {
 
 	private Producer<String, String> producer;
 	
-	private String metadata_broker_list = "127.0.0.1:9092";
+	private String metadata_broker_list = "10.2.27.122:9092";
 	
 	public KafkaProducer(String metadata_broker_list) {
 		this.metadata_broker_list = metadata_broker_list;
@@ -27,32 +24,14 @@ public class KafkaProducer {
 	}
 	
 	public static void main(String[] args){
-		final KafkaProducer producer=new KafkaProducer("192.168.81.232:9092");
+		final KafkaProducer producer=new KafkaProducer("10.2.27.122:9092");
+		final String topic="syslog";
 		Thread t=new Thread(){
 
 			@Override
 			public void run() {
-				Random random=new Random(9);
 				for(int i=0;i<Integer.MAX_VALUE;i++){
-					//producer.send("lg-test",i+"message");
-					
-					int index=Math.abs(random.nextInt())%10;
-					Map<String,Object> params=new HashMap<String,Object>();
-					params.put("metricsName","iis.log.datatime_scomputer_cip");
-					
-					Map<String,Object> metricsItems=new HashMap<String,Object>();
-					metricsItems.put("data_time","2015-05-25 15:4"+index);
-					metricsItems.put("s_computer","SVR1404HP360");
-					metricsItems.put("c_ip","10.8.3.9"+random.nextInt());
-					params.put("metricsItems",metricsItems);
-					
-					Map<String,Object> metricsStatistics=new HashMap<String,Object>();
-					metricsStatistics.put("iis.log.sum_column_cs_bytes",25727+index);
-					metricsStatistics.put("iis.log.sum_column_sc_bytes",31786+index);
-					metricsStatistics.put("iis.log.sum_column_time_token",732+index);
-					params.put("metricsStatistics",metricsStatistics);
-					
-					producer.send("iis-metrics-test",JSON.toJSONString(params));
+					producer.send(topic,i+"message");
 				}
 				System.out.println("producer over");
 			}

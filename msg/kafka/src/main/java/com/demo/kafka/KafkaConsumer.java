@@ -8,11 +8,14 @@ import java.util.Properties;
 
 import kafka.consumer.Consumer;
 import kafka.consumer.ConsumerConfig;
+import kafka.consumer.ConsumerFetcherThread;
 import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
 import kafka.javaapi.consumer.ConsumerConnector;
 
 public class KafkaConsumer extends Thread{
+	
+	ConsumerFetcherThread afsd;
 	
 	private final ConsumerConnector consumer;
 	private final String topic;
@@ -23,10 +26,7 @@ public class KafkaConsumer extends Thread{
 	}
 	
 	public static void main(String[] args) throws UnsupportedEncodingException{
-		//KafkaConsumer consumer=new KafkaConsumer("iis-metrics");
-		KafkaConsumer consumer=new KafkaConsumer("logginggw-iislog");
-		//KafkaConsumer consumer=new KafkaConsumer("lg-test");
-		//KafkaConsumer consumer=new KafkaConsumer("iis-metrics-test");
+		KafkaConsumer consumer=new KafkaConsumer("osg-app");
 		consumer.start();
 	}
 	
@@ -48,8 +48,8 @@ public class KafkaConsumer extends Thread{
 
 	private static ConsumerConfig createConsumerConfig() {
 		Properties props = new Properties();
-		props.put("zookeeper.connect", 			  "192.168.81.232:2181,192.168.81.231:2181");
-		props.put("group.id", 					  "group");
+		props.put("zookeeper.connect", 			  "10.2.27.122:2181");
+		props.put("group.id", 					  "osg-app-g1");
 		props.put("auto.offset.reset", 			  "largest");
 		props.put("zookeeper.session.timeout.ms", "15000");
 		props.put("zookeeper.sync.time.ms", 	  "3000");
