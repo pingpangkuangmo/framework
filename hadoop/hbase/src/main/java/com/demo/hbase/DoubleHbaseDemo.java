@@ -1,6 +1,7 @@
 package com.demo.hbase;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.hbase.client.HTable;
 import org.apache.hadoop.mapred.InputFormat;
 import org.apache.hadoop.mapreduce.OutputFormat;
@@ -11,8 +12,14 @@ public class DoubleHbaseDemo {
 	/*TableInputFormatBase base;
 	TableInputFormat habseTable;
 	TableMapper tableMapper;
-	TableOutputFormat tableOutputFormat;*/
+	TableOutputFormat tableOutputFormat;
+	HRegionServer hRegionServer;*/
+	HRegion hRegion;
+	HBaseServer hBaseServer;
+	HBaseRPC hbaseRPC;
+	MultiRowMutationEndpoint multiRowMutationEndpoint;
 	OutputFormat<String, String> out;
+	FileSystem fs;
 
 	public static void main(String[] args) throws Exception{
 		

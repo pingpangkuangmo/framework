@@ -26,7 +26,7 @@ public class KafkaConsumer extends Thread{
 	}
 	
 	public static void main(String[] args) throws UnsupportedEncodingException{
-		KafkaConsumer consumer=new KafkaConsumer("osg-app");
+		KafkaConsumer consumer=new KafkaConsumer("syslogapp");
 		consumer.start();
 	}
 	
@@ -48,9 +48,10 @@ public class KafkaConsumer extends Thread{
 
 	private static ConsumerConfig createConsumerConfig() {
 		Properties props = new Properties();
-		props.put("zookeeper.connect", 			  "10.2.27.122:2181");
-		props.put("group.id", 					  "osg-app-g1");
-		props.put("auto.offset.reset", 			  "largest");
+		//props.put("zookeeper.connect", 			  "10.2.27.122:2181");
+		props.put("zookeeper.connect", 			  "10.8.84.74:2181");
+		props.put("group.id", 					  "syslog-applog-lg-g1");
+		props.put("auto.offset.reset", 			  "smallest");
 		props.put("zookeeper.session.timeout.ms", "15000");
 		props.put("zookeeper.sync.time.ms", 	  "3000");
 		props.put("auto.commit.interval.ms", 	  "1000");
