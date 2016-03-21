@@ -27,5 +27,24 @@
 	    <artifactId>metamorphosis-client</artifactId>
 	    <version>1.4.6.1</version>
 	</dependency>
+	
+	<dependency>
+	<groupId>com.taobao.metamorphosis</groupId>
+	<artifactId>metamorphosis-server</artifactId>
+	<version>1.4.6.1</version>
+</dependency>
+
+<dependency>
+	<groupId>com.taobao.metamorphosis</groupId>
+	<artifactId>metamorphosis-server-wrapper</artifactId>
+	<version>1.4.6.1</version>
+</dependency>
+<dependency>
+	<groupId>org.apache.commons</groupId>
+	<artifactId>commons-lang3</artifactId>
+	<version>3.0</version>
+</dependency>
+
+	
   </dependencies>
 </project>
