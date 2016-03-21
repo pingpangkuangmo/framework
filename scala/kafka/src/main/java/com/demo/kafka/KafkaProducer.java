@@ -9,14 +9,27 @@ import java.util.concurrent.LinkedBlockingQueue;
 import com.alibaba.fastjson.JSON;
 
 import kafka.javaapi.producer.Producer;
+import kafka.network.BlockingChannel;
+import kafka.network.SocketServer;
+import kafka.producer.BrokerPartitionInfo;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
+import kafka.utils.CoreUtils;
+import kafka.utils.KafkaScheduler;
+import kafka.utils.Pool;
 
 
 public class KafkaProducer {
 	
 	kafka.producer.Producer p;
 	LinkedBlockingQueue q;
+	CoreUtils coreUtils;
+	BrokerPartitionInfo brokerPartitionInfo;
+	BlockingChannel blockingChannel;
+	kafka.Kafka kafka;
+	KafkaScheduler kafkaScheduler;
+	Pool pool;
+	SocketServer socketServer;
 
 	private Producer<String, String> producer;
 	
