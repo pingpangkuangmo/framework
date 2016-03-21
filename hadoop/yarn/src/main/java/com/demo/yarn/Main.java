@@ -1,7 +1,11 @@
 package com.demo.yarn;
 
+import org.apache.hadoop.ipc.RPC;
+import org.apache.hadoop.ipc.RpcEngine;
 import org.apache.hadoop.mapreduce.v2.app.MRAppMaster;
+import org.apache.hadoop.yarn.api.ApplicationClientProtocol;
 import org.apache.hadoop.yarn.event.AsyncDispatcher;
+import org.apache.hadoop.yarn.ipc.YarnRPC;
 import org.apache.hadoop.yarn.server.nodemanager.ContainerExecutor;
 import org.apache.hadoop.yarn.server.nodemanager.NodeHealthCheckerService;
 import org.apache.hadoop.yarn.server.nodemanager.NodeManager;
@@ -93,4 +97,9 @@ public class Main {
 	
 	//YARN MRAppMaster分析
 	MRAppMaster mrAppMaster;
+	
+	RPC rpc;
+	RpcEngine rpcEngine;
+	YarnRPC yarnRPC;
+	ApplicationClientProtocol applicationClientProtocol;
 }
