@@ -4,6 +4,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 				classpath:spring/spring-context.xml
+				classpath:spring/spring-jdbc.xml
 		</param-value>
 	</context-param>
 	
