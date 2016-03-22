@@ -8,15 +8,23 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import com.alibaba.fastjson.JSON;
 
+import kafka.admin.AdminUtils;
 import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
+import kafka.server.KafkaApis;
+import kafka.server.KafkaServer;
+import kafka.server.ReplicaManager;
 
 
 public class KafkaProducer {
 	
 	kafka.producer.Producer p;
 	LinkedBlockingQueue q;
+	KafkaServer kafkaServer;
+	KafkaApis kafkaApis;
+	AdminUtils adminUtils;
+	ReplicaManager replicaManager;
 
 	private Producer<String, String> producer;
 	
