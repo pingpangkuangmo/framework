@@ -2,12 +2,43 @@ package com.demo.kafka.base;
 
 import java.util.Properties;
 
+import org.I0Itec.zkclient.ZkClient;
+import org.apache.kafka.common.utils.Utils;
+
+import kafka.api.LeaderAndIsr;
+import kafka.cluster.Partition;
+import kafka.controller.KafkaController;
+import kafka.controller.KafkaController.SessionExpirationListener;
+import kafka.coordinator.GroupCoordinator;
 import kafka.javaapi.producer.Producer;
+import kafka.network.ConnectionQuotas;
+import kafka.network.Processor;
+import kafka.network.SocketServer;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
+import kafka.server.KafkaServer;
+import kafka.server.ZookeeperLeaderElector;
+import kafka.utils.ReplicationUtils;
+import kafka.utils.ZkUtils;
 
 
 public class KafkaProducer {
+	
+	kafka.Kafka kafka;
+	SocketServer socketServer;
+	Utils utils;
+	ConnectionQuotas connectionQuotas;
+	Processor processor;
+	Partition partition;
+	LeaderAndIsr leaderAndIsr;
+	ReplicationUtils replicationUtils;
+	KafkaController kafkaController;
+	SessionExpirationListener sessionExpirationListener;
+	ZkUtils zkUtils;
+	ZkClient zkClient;
+	ZookeeperLeaderElector zookeeperLeaderElector;
+	KafkaServer kafkaServer;
+	GroupCoordinator groupCoordinator;
 
 	public static void main(String[] args){
 		Properties props=new Properties();
