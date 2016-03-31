@@ -13,4 +13,5 @@ public class Main {
 	LiteWorkflowInstance liteWorkflowInstance;
 	DBLiteWorkflowLib dbLiteWorkflowLib;
 	Store store;
+	org.apache.oozie.cli.OozieCLI cli;
 }
