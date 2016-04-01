@@ -2,10 +2,14 @@ package com.demo.oozie.base;
 
 import org.apache.oozie.BundleJobBean;
 import org.apache.oozie.CoordinatorJobBean;
+import org.apache.oozie.DagEngine;
 import org.apache.oozie.WorkflowJobBean;
 import org.apache.oozie.action.ActionExecutor;
+import org.apache.oozie.command.wf.ActionStartXCommand;
+import org.apache.oozie.command.wf.SignalXCommand;
 import org.apache.oozie.command.wf.SubmitXCommand;
 import org.apache.oozie.local.LocalOozie;
+import org.apache.oozie.service.CallableQueueService;
 import org.apache.oozie.service.Service;
 import org.apache.oozie.service.Services;
 import org.apache.oozie.service.WorkflowAppService;
@@ -38,4 +42,9 @@ public class Main {
 	BundleJobBean bundleJobBean;
 	
 	org.apache.oozie.cli.OozieCLI cli;
+	SignalXCommand signalXCommand;
+	ActionStartXCommand actionStartXCommand;
+	DagEngine dagEngine;
+	CallableQueueService callableQueueService;
+	
 }
