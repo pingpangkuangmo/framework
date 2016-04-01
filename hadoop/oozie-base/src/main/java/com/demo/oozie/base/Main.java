@@ -37,4 +37,5 @@ public class Main {
 	WorkflowJobBean workflowJobBean;
 	BundleJobBean bundleJobBean;
 	
+	org.apache.oozie.cli.OozieCLI cli;
 }
