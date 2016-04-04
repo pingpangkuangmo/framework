@@ -1,6 +1,7 @@
 package com.demo.oozie.base;
 
 import org.apache.oozie.WorkflowActionBean;
+import org.apache.oozie.cli.OozieCLI;
 import org.apache.oozie.command.wf.ActionCheckXCommand;
 import org.apache.oozie.BundleJobBean;
 import org.apache.oozie.CoordinatorJobBean;
@@ -51,5 +52,7 @@ public class Main {
 	ActionStartXCommand actionStartXCommand;
 	DagEngine dagEngine;
 	CallableQueueService callableQueueService;
+	
+	OozieCLI oozieCLI;
 	
 }
