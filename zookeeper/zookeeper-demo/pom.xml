@@ -25,7 +25,7 @@
 	<groupId>com.h2database</groupId>
 	<artifactId>h2</artifactId>
 	<version>1.4.185</version>
-</dependency>
+	</dependency>
     <dependency>
 		<groupId>org.apache.zookeeper</groupId>
 		<artifactId>zookeeper</artifactId>
