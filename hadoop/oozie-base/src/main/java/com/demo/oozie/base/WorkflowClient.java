@@ -11,10 +11,10 @@ import org.apache.oozie.client.WorkflowJob.Status;
 
 public class WorkflowClient {
 
-	private static String OOZIE_URL = "http://sachidn002.hq.navteq.com:11000/oozie/";
-    private static String JOB_PATH = "hdfs://sachicn001:8020/user/blublins/workflows/IPSIngestion";
-    private static String JOB_Tracker = "sachicn003:2010";
-    private static String NAMENode = "hdfs://sachicn001:8020";
+	private static String OOZIE_URL = "http://10.142.78.40:11000/oozie";
+    private static String JOB_PATH = "hdfs://ns/user/hue/oozie/workspaces/lg-oozie-00001";
+    private static String JOB_Tracker = "10.142.78.36:8032";
+    private static String NAMENode = "hdfs://ns";
 
     OozieClient wc = null;
 
@@ -26,6 +26,7 @@ public class WorkflowClient {
         throws OozieClientException{
 
         // create a workflow job configuration and set the workflow application path
+    	System.setProperty("user.name","admin");
         Properties conf = wc.createConfiguration();
         conf.setProperty(OozieClient.APP_PATH, wfDefinition);
 
@@ -51,19 +52,22 @@ public class WorkflowClient {
         WorkflowClient client = new WorkflowClient(OOZIE_URL);
         // Create parameters
         List<WorkflowParameter> wfParameters = new LinkedList<WorkflowParameter>();
-        WorkflowParameter drive = new WorkflowParameter("driveID","729-pp00004-2010-09-01-09-46");
-        WorkflowParameter lidar = new WorkflowParameter("lidarChunk","4");
-        WorkflowParameter signage = new WorkflowParameter("signageChunk","4");
-        wfParameters.add(drive);
-        wfParameters.add(lidar);
-        wfParameters.add(signage);
+        WorkflowParameter a1 = new WorkflowParameter("oozie.use.system.libpath","true");
+        WorkflowParameter a2 = new WorkflowParameter("start_date","2016-03-31T17:52Z");
+        WorkflowParameter a3 = new WorkflowParameter("end_date","2099-12-31T00:00Z");
+        WorkflowParameter a4 = new WorkflowParameter("businessDate","201604051754");
+        
+        wfParameters.add(a1);
+        wfParameters.add(a2);
+        wfParameters.add(a3);
+        wfParameters.add(a4);
         // Start Oozing
         String jobId = client.startJob(JOB_PATH, wfParameters);
         Status status = client.getJobStatus(jobId);
         if(status == Status.RUNNING)
              System.out.println("Workflow job running");
         else
-             System.out.println("Problem starting Workflow job");
+             System.out.println("Problem starting Workflow job: "+status);
     }
 
 }

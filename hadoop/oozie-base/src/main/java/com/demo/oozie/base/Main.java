@@ -8,6 +8,7 @@ import org.apache.oozie.CoordinatorJobBean;
 import org.apache.oozie.DagEngine;
 import org.apache.oozie.WorkflowJobBean;
 import org.apache.oozie.action.ActionExecutor;
+import org.apache.oozie.action.hadoop.JavaActionExecutor;
 import org.apache.oozie.command.wf.ActionStartXCommand;
 import org.apache.oozie.command.wf.SignalXCommand;
 import org.apache.oozie.command.wf.SubmitXCommand;
@@ -18,6 +19,7 @@ import org.apache.oozie.service.Services;
 import org.apache.oozie.service.WorkflowAppService;
 import org.apache.oozie.servlet.BaseJobServlet;
 import org.apache.oozie.servlet.BaseJobsServlet;
+import org.apache.oozie.servlet.CallbackServlet;
 import org.apache.oozie.store.Store;
 import org.apache.oozie.workflow.WorkflowApp;
 import org.apache.oozie.workflow.WorkflowInstance;
@@ -35,8 +37,9 @@ public class Main {
 	Service service;
 	WorkflowApp workflowApp;
 	WorkflowInstance workflowInstance;
+	
 	ActionExecutor actionExecutor;
-	LocalOozie localOozie;
+	JavaActionExecutor javaActionExecutor;
 	
 	CoordinatorJobBean coordinatorJobBean;
 	WorkflowJobBean workflowJobBean;
@@ -54,5 +57,9 @@ public class Main {
 	CallableQueueService callableQueueService;
 	
 	OozieCLI oozieCLI;
+	
+	LocalOozie localOozie;
+	
+	CallbackServlet callbackServlet;
 	
 }
