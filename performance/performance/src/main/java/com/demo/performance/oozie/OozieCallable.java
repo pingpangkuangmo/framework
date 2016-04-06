@@ -5,10 +5,13 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.apache.oozie.client.OozieClient;
+import org.apache.oozie.client.WorkflowJob;
 
 import com.demo.performance.BaseCallable;
 import com.demo.performance.BaseResult;
 import com.demo.performance.Result;
+import com.demo.performance.Result.Status;
+import com.demo.performance.util.TimeUtils;
 
 public class OozieCallable implements BaseCallable{
 	
@@ -16,10 +19,12 @@ public class OozieCallable implements BaseCallable{
     private static String JOB_PATH = "hdfs://ns/user/hue/oozie/workspaces/lg-oozie-00001";
     private static String JOB_Tracker = "10.142.78.36:8032";
     private static String NAMENode = "hdfs://ns";
+    
+    private BaseResult baseResult = new BaseResult();
 
 	@Override
 	public Result call() throws Exception {
-		boolean successed = false;
+		baseResult.setStatus(Status.PREP);
 		try {
 			OozieClient wc = new OozieClient(OOZIE_URL);
 			
@@ -35,15 +40,36 @@ public class OozieCallable implements BaseCallable{
 			    for(String parameter : params.keySet())
 			        conf.setProperty(parameter, params.get(parameter));
 			}
-
 			String jobId = wc.run(conf);
 			if(jobId != null){
-				successed = true;
+				boolean done = false;
+				while(!done){
+					TimeUtils.sleep(100);
+					WorkflowJob job = wc.getJobInfo(jobId);
+					switch (job.getStatus()) {
+						case PREP: baseResult.setStatus(Status.PREP); break;
+						case RUNNING: baseResult.setStatus(Status.RUNNING); break;
+						case SUCCEEDED: baseResult.setStatus(Status.SUCCEEDED); done = true; break;
+						case FAILED: baseResult.setStatus(Status.FAILED); done = true; break;
+						case KILLED: baseResult.setStatus(Status.KILLED); done = true; break;
+						case SUSPENDED: baseResult.setStatus(Status.SUSPENDED); break;
+						default:
+							break;
+					}
+				}
+			}else{
+				baseResult.setStatus(Status.FAILED);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			baseResult.setStatus(Status.FAILED);
 		}
-		return new BaseResult(successed);
+		return baseResult;
+	}
+
+	@Override
+	public BaseResult getBaseResult() {
+		return baseResult;
 	}
 
 }
