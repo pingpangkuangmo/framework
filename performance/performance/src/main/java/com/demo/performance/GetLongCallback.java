@@ -4,11 +4,11 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class GetLongCallback implements GetDataCallback<Long>{
 
-	private AtomicLong atomicLong;
+	private MyReference<AtomicLong> reference;
 	private String name;
 	
-	public GetLongCallback(String name, AtomicLong atomicLong) {
-		this.atomicLong = atomicLong;
+	public GetLongCallback(String name, MyReference<AtomicLong> reference) {
+		this.reference = reference;
 		this.name = name;
 	}
 	
@@ -18,6 +18,6 @@ public class GetLongCallback implements GetDataCallback<Long>{
 	}
 	@Override
 	public Long get() {
-		return atomicLong.get();
+		return reference.get().get();
 	}
 }

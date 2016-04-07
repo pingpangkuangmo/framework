@@ -12,7 +12,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import org.mortbay.util.ajax.JSON;
+import com.alibaba.fastjson.JSON;
 
 public class SampleManager {
 	
@@ -78,7 +78,7 @@ public class SampleManager {
 		Map<String,Object> allMetrixs = new HashMap<String,Object>();
 		allMetrixs.put("indexs", indexs);
 		allMetrixs.putAll(metrixs);
-		String allData = JSON.toString(allMetrixs);
+		String allData = JSON.toJSONString(allMetrixs);
 		FileWriter writer = null;
 		try {
 			File file = new File("C:\\log\\oozie\\test.log");

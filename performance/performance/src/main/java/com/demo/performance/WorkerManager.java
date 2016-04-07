@@ -13,23 +13,28 @@ import com.demo.performance.Result.Status;
 public class WorkerManager {
 
 	private ExecutorService executorService;
+	private ExecutorService getStatusExecutorService;
 	
 	private SampleManager sampleManager = new SampleManager();
 	
-	private AtomicLong prepNum = new AtomicLong(0);
-	private AtomicLong runningNum = new AtomicLong(0);
-	private AtomicLong succeededNum = new AtomicLong(0);
-	private AtomicLong failedNum = new AtomicLong(0);
-	private AtomicLong killedNum = new AtomicLong(0);
-	private AtomicLong suspendedNum = new AtomicLong(0);
-	private AtomicLong totalNum = new AtomicLong(0);
+	private MyReference<AtomicLong> prepNum = new MyReference<AtomicLong>(new AtomicLong(0));
+	private MyReference<AtomicLong> runningNum = new MyReference<AtomicLong>(new AtomicLong(0));
+	private MyReference<AtomicLong> succeededNum = new MyReference<AtomicLong>(new AtomicLong(0));
+	private MyReference<AtomicLong> failedNum = new MyReference<AtomicLong>(new AtomicLong(0));
+	private MyReference<AtomicLong> killedNum = new MyReference<AtomicLong>(new AtomicLong(0));
+	private MyReference<AtomicLong> suspendedNum = new MyReference<AtomicLong>(new AtomicLong(0));
+	private MyReference<AtomicLong> totalNum = new MyReference<AtomicLong>(new AtomicLong(0));
 	
 	private List<BaseCallable> callables;
 	
-	private ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+	private ScheduledExecutorService scanResultExecutorService = Executors.newScheduledThreadPool(1);
 	
 	public WorkerManager(int executorThreads){
+		if(executorThreads < 2){
+			throw new RuntimeException("executorThreads must not less than 2");
+		}
 		executorService = Executors.newFixedThreadPool(executorThreads);
+		getStatusExecutorService = Executors.newFixedThreadPool(executorThreads/2);
 	}
 	
 	public void initSample(){
@@ -41,16 +46,17 @@ public class WorkerManager {
 		sampleManager.addGetDataCallback(new GetLongCallback(Status.SUSPENDED.name(), suspendedNum));
 		sampleManager.addGetDataCallback(new GetLongCallback("TOTAL", totalNum));
 		sampleManager.start();
-		scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
+		scanResultExecutorService.scheduleAtFixedRate(new Runnable() {
 			
 			@Override
 			public void run() {
 				scanResult();
 			}
-		}, 0, 1, TimeUnit.SECONDS);
+		}, 0, 2, TimeUnit.SECONDS);
 	}
 	
 	protected void scanResult() {
+		System.out.println("scanResult");
 		List<BaseCallable> indexsToRemove = new ArrayList<BaseCallable>();
 		
 		AtomicLong prepNumTemp = new AtomicLong(0);
@@ -58,31 +64,32 @@ public class WorkerManager {
 		AtomicLong suspendedNumTemp = new AtomicLong(0);
 
 		for(BaseCallable baseCallable : callables){
-			BaseResult baseResult = baseCallable.getBaseResult();
-			Status status = baseResult.getStatus();
+			Status status = baseCallable.getStatus();
 			switch (status) {
 			case PREP: prepNumTemp.incrementAndGet(); break;
 			case RUNNING: runningNumTemp.incrementAndGet(); break;
 			case SUSPENDED: suspendedNumTemp.incrementAndGet(); break;
-			case SUCCEEDED: succeededNum.incrementAndGet(); break;
-			case FAILED: failedNum.incrementAndGet(); break;
-			case KILLED: killedNum.incrementAndGet(); break;
+			case SUCCEEDED: succeededNum.get().incrementAndGet(); break;
+			case FAILED: failedNum.get().incrementAndGet(); break;
+			case KILLED: killedNum.get().incrementAndGet(); break;
 			default:
 				break;
 			}
-			if(baseResult.isDone()){
+			if(baseCallable.isDone()){
 				indexsToRemove.add(baseCallable);
-				totalNum.incrementAndGet();
+				totalNum.get().incrementAndGet();
+			}else{
+				getStatusExecutorService.submit(new GetStatusCallable(baseCallable));
 			}
 		}
-		prepNum = prepNumTemp;
-		runningNum = runningNumTemp;
-		suspendedNum = suspendedNumTemp;
+		prepNum.set(prepNumTemp);
+		runningNum.set(runningNumTemp);
+		suspendedNum.set(suspendedNumTemp);
 		for(BaseCallable baseCallable : indexsToRemove){
 			callables.remove(baseCallable);
 		}
 	}
-
+	
 	public void start(List<BaseCallable> tasks){
 		if(tasks == null){
 			throw new RuntimeException("the list of tasks can not be null");
@@ -104,7 +111,7 @@ public class WorkerManager {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			if(totalNum.get()==tasksSize){
+			if(totalNum.get().get()==tasksSize){
 				break;
 			}
 		}
@@ -113,7 +120,8 @@ public class WorkerManager {
 	
 	public void stop(){
 		executorService.shutdown();
-		scheduledExecutorService.shutdown();
+		getStatusExecutorService.shutdown();
+		scanResultExecutorService.shutdown();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -121,6 +129,5 @@ public class WorkerManager {
 		}
 		sampleManager.stop();
 	}
-	
 	
 }

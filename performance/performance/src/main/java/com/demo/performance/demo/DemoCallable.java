@@ -1,33 +1,26 @@
 package com.demo.performance.demo;
 
-import java.util.Random;
-
 import com.demo.performance.BaseCallable;
 import com.demo.performance.Result;
-import com.demo.performance.BaseResult;
 import com.demo.performance.Result.Status;
+import com.demo.performance.util.RandomUtils;
+import com.demo.performance.util.TimeUtils;
 
-public class DemoCallable implements BaseCallable{
+public class DemoCallable extends BaseCallable{
 	
-	private BaseResult baseResult = new BaseResult();
-
 	@Override
 	public Result call() throws Exception {
-		baseResult.setStatus(Status.RUNNING);
-		Thread.sleep(300);
-		Random random = new Random();
-		boolean successed = random.nextInt() % 2 == 1 ? false:true;
+		setStatus(Status.PREP);
+		TimeUtils.sleep(100);
+		setStatus(Status.RUNNING);
+		TimeUtils.sleep(200);
+		boolean successed = RandomUtils.getRandom() % 2 == 1 ? false:true;
 		if(successed){
-			baseResult.setStatus(Status.SUCCEEDED);
+			setStatus(Status.SUCCEEDED);
 		}else{
-			baseResult.setStatus(Status.FAILED);
+			setStatus(Status.FAILED);
 		}
-		return baseResult;
-	}
-
-	@Override
-	public BaseResult getBaseResult() {
-		return baseResult;
+		return getBaseResult();
 	}
 
 }
