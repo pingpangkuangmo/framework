@@ -4,6 +4,6 @@ public interface GetDataCallback<V> {
 
 	public String getName();
 	
-	public V get();
+	public V get(Long index);
 	
 }

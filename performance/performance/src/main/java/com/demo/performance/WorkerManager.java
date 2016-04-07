@@ -45,6 +45,9 @@ public class WorkerManager {
 		sampleManager.addGetDataCallback(new GetLongCallback(Status.KILLED.name(), killedNum));
 		sampleManager.addGetDataCallback(new GetLongCallback(Status.SUSPENDED.name(), suspendedNum));
 		sampleManager.addGetDataCallback(new GetLongCallback("TOTAL", totalNum));
+		sampleManager.addGetDataCallback(new GetRateCallback(Status.SUCCEEDED.name()+".RATE", succeededNum));
+		sampleManager.addGetDataCallback(new GetRateCallback(Status.FAILED.name()+".RATE", failedNum));
+		sampleManager.addGetDataCallback(new GetRateCallback("TOTAL.RATE", totalNum));
 		sampleManager.start();
 		scanResultExecutorService.scheduleAtFixedRate(new Runnable() {
 			
@@ -79,7 +82,7 @@ public class WorkerManager {
 				indexsToRemove.add(baseCallable);
 				totalNum.get().incrementAndGet();
 			}else{
-				getStatusExecutorService.submit(new GetStatusCallable(baseCallable));
+				getStatusExecutorService.submit(new UpdateStatusCallable(baseCallable));
 			}
 		}
 		prepNum.set(prepNumTemp);

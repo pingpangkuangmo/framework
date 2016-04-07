@@ -46,7 +46,7 @@ public class SampleManager {
 		System.out.println("第 "+count+" 次执行采样开始----------");
 		indexs.add(count);
 		for(String callbackName : callbacks.keySet()){
-			Object value = callbacks.get(callbackName).get();
+			Object value = callbacks.get(callbackName).get(count);
 			System.out.println(callbackName+":"+value);
 			List<Object> datas = metrixs.get(callbackName);
 			if(datas == null){

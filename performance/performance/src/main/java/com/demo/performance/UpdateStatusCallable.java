@@ -1,10 +1,10 @@
 package com.demo.performance;
 
-public class GetStatusCallable implements Runnable{
+public class UpdateStatusCallable implements Runnable{
 
 	private BaseCallable baseCallable;
 	
-	public GetStatusCallable(BaseCallable baseCallable){
+	public UpdateStatusCallable(BaseCallable baseCallable){
 		this.baseCallable = baseCallable;
 	}
 	

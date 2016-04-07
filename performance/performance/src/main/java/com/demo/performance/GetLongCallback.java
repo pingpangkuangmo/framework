@@ -17,7 +17,7 @@ public class GetLongCallback implements GetDataCallback<Long>{
 		return name;
 	}
 	@Override
-	public Long get() {
+	public Long get(Long index) {
 		return reference.get().get();
 	}
 }
