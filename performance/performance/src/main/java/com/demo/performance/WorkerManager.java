@@ -17,6 +17,7 @@ public class WorkerManager {
 	
 	private SampleManager sampleManager = new SampleManager();
 	
+	private MyReference<AtomicLong> initNum = new MyReference<AtomicLong>(new AtomicLong(0));
 	private MyReference<AtomicLong> prepNum = new MyReference<AtomicLong>(new AtomicLong(0));
 	private MyReference<AtomicLong> runningNum = new MyReference<AtomicLong>(new AtomicLong(0));
 	private MyReference<AtomicLong> succeededNum = new MyReference<AtomicLong>(new AtomicLong(0));
@@ -38,6 +39,7 @@ public class WorkerManager {
 	}
 	
 	public void initSample(){
+		sampleManager.addGetDataCallback(new GetLongCallback(Status.INIT.name(), initNum));
 		sampleManager.addGetDataCallback(new GetLongCallback(Status.PREP.name(), prepNum));
 		sampleManager.addGetDataCallback(new GetLongCallback(Status.RUNNING.name(), runningNum));
 		sampleManager.addGetDataCallback(new GetLongCallback(Status.SUCCEEDED.name(), succeededNum));
@@ -48,6 +50,14 @@ public class WorkerManager {
 		sampleManager.addGetDataCallback(new GetRateCallback(Status.SUCCEEDED.name()+".RATE", succeededNum));
 		sampleManager.addGetDataCallback(new GetRateCallback(Status.FAILED.name()+".RATE", failedNum));
 		sampleManager.addGetDataCallback(new GetRateCallback("TOTAL.RATE", totalNum));
+		List<MyReference<AtomicLong>> references = new ArrayList<MyReference<AtomicLong>>();
+		references.add(prepNum);
+		references.add(runningNum);
+		references.add(succeededNum);
+		references.add(failedNum);
+		references.add(killedNum);
+		references.add(suspendedNum);
+		sampleManager.addGetDataCallback(new GetRateCallback("SUBMIT.RATE", references));
 		sampleManager.start();
 		scanResultExecutorService.scheduleAtFixedRate(new Runnable() {
 			
@@ -62,6 +72,7 @@ public class WorkerManager {
 		System.out.println("scanResult");
 		List<BaseCallable> indexsToRemove = new ArrayList<BaseCallable>();
 		
+		AtomicLong initNumTemp = new AtomicLong(0);
 		AtomicLong prepNumTemp = new AtomicLong(0);
 		AtomicLong runningNumTemp = new AtomicLong(0);
 		AtomicLong suspendedNumTemp = new AtomicLong(0);
@@ -69,6 +80,7 @@ public class WorkerManager {
 		for(BaseCallable baseCallable : callables){
 			Status status = baseCallable.getStatus();
 			switch (status) {
+			case INIT: initNumTemp.incrementAndGet(); break;
 			case PREP: prepNumTemp.incrementAndGet(); break;
 			case RUNNING: runningNumTemp.incrementAndGet(); break;
 			case SUSPENDED: suspendedNumTemp.incrementAndGet(); break;
@@ -85,6 +97,7 @@ public class WorkerManager {
 				getStatusExecutorService.submit(new UpdateStatusCallable(baseCallable));
 			}
 		}
+		initNum.set(initNumTemp);
 		prepNum.set(prepNumTemp);
 		runningNum.set(runningNumTemp);
 		suspendedNum.set(suspendedNumTemp);

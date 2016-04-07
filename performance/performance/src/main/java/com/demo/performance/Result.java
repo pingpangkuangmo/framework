@@ -5,7 +5,7 @@ public interface Result{
 	public boolean isDone();
 	
 	public static enum Status {
-        PREP, RUNNING, SUCCEEDED, KILLED, FAILED, SUSPENDED
+        INIT, PREP, RUNNING, SUCCEEDED, KILLED, FAILED, SUSPENDED
     }
 	
 	public Status getStatus();

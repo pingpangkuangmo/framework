@@ -10,7 +10,7 @@ public class OozieSubmitCallable extends BaseCallable{
     
 	@Override
 	public Result call() throws Exception {
-		setStatus(Status.RUNNING);
+		setStatus(Status.INIT);
 		try {
 			jobId = OozieUtils.runjob();
 			if(jobId != null){

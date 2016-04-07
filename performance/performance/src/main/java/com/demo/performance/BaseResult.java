@@ -3,7 +3,7 @@ package com.demo.performance;
 
 public class BaseResult implements Result{
 
-	private Status status = Status.PREP;
+	private Status status = Status.INIT;
 	
 	public void setStatus(Status status){
 		if(status == null){

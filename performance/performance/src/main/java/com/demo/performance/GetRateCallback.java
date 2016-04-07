@@ -1,15 +1,25 @@
 package com.demo.performance;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class GetRateCallback implements GetDataCallback<Double>{
 
-	private MyReference<AtomicLong> reference;;
+	private List<MyReference<AtomicLong>> references;
 	private String name;
+	private Double preValue = 0d;
+	private Double currentValue = 0d;
+	
+	public GetRateCallback(String name, List<MyReference<AtomicLong>> references) {
+		this.name = name;
+		this.references = references;
+	}
 	
 	public GetRateCallback(String name, MyReference<AtomicLong> reference) {
 		this.name = name;
-		this.reference = reference;
+		this.references = new ArrayList<MyReference<AtomicLong>>();
+		this.references.add(reference);
 	}
 	
 	@Override
@@ -19,8 +29,13 @@ public class GetRateCallback implements GetDataCallback<Double>{
 
 	@Override
 	public Double get(Long index) {
-		Double d = Double.parseDouble(reference.get().get()+"");
-		return d/index;
+		preValue = currentValue;
+		Double total = 0d;
+		for(MyReference<AtomicLong> item : references){
+			total += Double.parseDouble(item.get().get()+""); 
+		}
+		currentValue = total;
+		return (total - preValue) / index;
 	}
 
 }

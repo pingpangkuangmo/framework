@@ -12,7 +12,7 @@ import org.apache.oozie.client.WorkflowJob.Status;
 public class OozieUtils {
 
 	private static String OOZIE_URL = "http://10.142.78.40:11000/oozie";
-    private static String JOB_PATH = "hdfs://ns/user/hue/oozie/workspaces/lg-oozie-00001";
+    private static String JOB_PATH = "hdfs://ns/user/hue/oozie/workspaces/hue-oozie-1459414078.05";
     private static String JOB_Tracker = "10.142.78.36:8032";
     private static String NAMENode = "hdfs://ns";
     

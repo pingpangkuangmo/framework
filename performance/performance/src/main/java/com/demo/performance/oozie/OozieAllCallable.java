@@ -13,7 +13,7 @@ public class OozieAllCallable extends BaseCallable{
     
 	@Override
 	public Result call() throws Exception {
-		setStatus(Status.PREP);
+		setStatus(Status.INIT);
 		try {
 			jobId = OozieUtils.runjob();
 		} catch (Exception e) {
