@@ -12,9 +12,12 @@ import org.apache.oozie.action.hadoop.JavaActionExecutor;
 import org.apache.oozie.command.wf.ActionEndXCommand;
 import org.apache.oozie.command.wf.ActionStartXCommand;
 import org.apache.oozie.command.wf.ActionXCommand;
+import org.apache.oozie.command.wf.ResumeXCommand;
 import org.apache.oozie.command.wf.SignalXCommand;
 import org.apache.oozie.command.wf.SubmitXCommand;
+import org.apache.oozie.command.wf.SuspendXCommand;
 import org.apache.oozie.local.LocalOozie;
+import org.apache.oozie.service.ActionCheckerService;
 import org.apache.oozie.service.CallableQueueService;
 import org.apache.oozie.service.InstrumentationService;
 import org.apache.oozie.service.Service;
@@ -71,4 +74,9 @@ public class Main {
 	ActionStartXCommand actionStartXCommand;
 	ActionEndXCommand actionEndXCommand;
 	ActionXCommand<?> actionXCommand;
+	
+	ActionCheckerService actionCheckerService;
+	
+	ResumeXCommand resumeXCommand;
+	SuspendXCommand suspendXCommand;
 }
