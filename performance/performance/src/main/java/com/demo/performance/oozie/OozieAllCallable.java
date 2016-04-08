@@ -1,5 +1,7 @@
 package com.demo.performance.oozie;
 
+import java.util.Map;
+
 import org.apache.oozie.client.OozieClientException;
 import org.apache.oozie.client.WorkflowJob;
 
@@ -10,12 +12,22 @@ import com.demo.performance.Result.Status;
 public class OozieAllCallable extends BaseCallable{
 	
     private String jobId = null;
+    private String jobPath;
+    private Map<String, String> params = null;
+    public OozieAllCallable(String jobPath, Map<String, String> params) {
+    	this.jobPath = jobPath;
+    	this.params = params;
+    }
+    
+    public OozieAllCallable(String jobPath) {
+    	this.jobPath = jobPath;
+    }
     
 	@Override
 	public Result call() throws Exception {
 		setStatus(Status.INIT);
 		try {
-			jobId = OozieUtils.runjob();
+			jobId = OozieUtils.runjob(jobPath, params);
 		} catch (Exception e) {
 			e.printStackTrace();
 			setStatus(Status.FAILED);

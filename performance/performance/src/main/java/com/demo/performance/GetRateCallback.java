@@ -11,6 +11,9 @@ public class GetRateCallback implements GetDataCallback<Double>{
 	private Double preValue = 0d;
 	private Double currentValue = 0d;
 	
+	private Long preIndex = 0L;
+	private Long currentIndex = 0L;
+	
 	public GetRateCallback(String name, List<MyReference<AtomicLong>> references) {
 		this.name = name;
 		this.references = references;
@@ -30,12 +33,14 @@ public class GetRateCallback implements GetDataCallback<Double>{
 	@Override
 	public Double get(Long index) {
 		preValue = currentValue;
+		preIndex = currentIndex;
+		currentIndex = index;
 		Double total = 0d;
 		for(MyReference<AtomicLong> item : references){
 			total += Double.parseDouble(item.get().get()+""); 
 		}
 		currentValue = total;
-		return (total - preValue) / index;
+		return (total - preValue) / (currentIndex - preIndex);
 	}
 
 }

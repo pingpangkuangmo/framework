@@ -35,7 +35,7 @@ public class WorkerManager {
 			throw new RuntimeException("executorThreads must not less than 2");
 		}
 		executorService = Executors.newFixedThreadPool(executorThreads);
-		getStatusExecutorService = Executors.newFixedThreadPool(executorThreads/2);
+		getStatusExecutorService = Executors.newFixedThreadPool(executorThreads);
 	}
 	
 	public void initSample(){
