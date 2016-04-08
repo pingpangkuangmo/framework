@@ -9,11 +9,14 @@ import org.apache.oozie.DagEngine;
 import org.apache.oozie.WorkflowJobBean;
 import org.apache.oozie.action.ActionExecutor;
 import org.apache.oozie.action.hadoop.JavaActionExecutor;
+import org.apache.oozie.command.wf.ActionEndXCommand;
 import org.apache.oozie.command.wf.ActionStartXCommand;
+import org.apache.oozie.command.wf.ActionXCommand;
 import org.apache.oozie.command.wf.SignalXCommand;
 import org.apache.oozie.command.wf.SubmitXCommand;
 import org.apache.oozie.local.LocalOozie;
 import org.apache.oozie.service.CallableQueueService;
+import org.apache.oozie.service.InstrumentationService;
 import org.apache.oozie.service.Service;
 import org.apache.oozie.service.Services;
 import org.apache.oozie.service.WorkflowAppService;
@@ -21,6 +24,7 @@ import org.apache.oozie.servlet.BaseJobServlet;
 import org.apache.oozie.servlet.BaseJobsServlet;
 import org.apache.oozie.servlet.CallbackServlet;
 import org.apache.oozie.store.Store;
+import org.apache.oozie.util.Instrumentation;
 import org.apache.oozie.workflow.WorkflowApp;
 import org.apache.oozie.workflow.WorkflowInstance;
 import org.apache.oozie.workflow.lite.DBLiteWorkflowLib;
@@ -52,7 +56,6 @@ public class Main {
 	
 	WorkflowActionBean workflowActionBean;
 	SignalXCommand signalXCommand;
-	ActionStartXCommand actionStartXCommand;
 	DagEngine dagEngine;
 	CallableQueueService callableQueueService;
 	
@@ -62,4 +65,10 @@ public class Main {
 	
 	CallbackServlet callbackServlet;
 	
+	Instrumentation instrumentation;
+	InstrumentationService instrumentationService;
+	
+	ActionStartXCommand actionStartXCommand;
+	ActionEndXCommand actionEndXCommand;
+	ActionXCommand<?> actionXCommand;
 }
