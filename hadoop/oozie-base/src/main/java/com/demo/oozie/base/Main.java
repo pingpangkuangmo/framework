@@ -2,6 +2,7 @@ package com.demo.oozie.base;
 
 import org.apache.oozie.WorkflowActionBean;
 import org.apache.oozie.cli.OozieCLI;
+import org.apache.oozie.command.coord.CoordSubmitXCommand;
 import org.apache.oozie.command.wf.ActionCheckXCommand;
 import org.apache.oozie.BundleJobBean;
 import org.apache.oozie.CoordinatorJobBean;
@@ -14,6 +15,7 @@ import org.apache.oozie.command.wf.ActionStartXCommand;
 import org.apache.oozie.command.wf.ActionXCommand;
 import org.apache.oozie.command.wf.ResumeXCommand;
 import org.apache.oozie.command.wf.SignalXCommand;
+import org.apache.oozie.command.wf.StartXCommand;
 import org.apache.oozie.command.wf.SubmitXCommand;
 import org.apache.oozie.command.wf.SuspendXCommand;
 import org.apache.oozie.local.LocalOozie;
@@ -79,4 +81,7 @@ public class Main {
 	
 	ResumeXCommand resumeXCommand;
 	SuspendXCommand suspendXCommand;
+	StartXCommand startXCommand;
+	
+	CoordSubmitXCommand coordSubmitXCommand;
 }
