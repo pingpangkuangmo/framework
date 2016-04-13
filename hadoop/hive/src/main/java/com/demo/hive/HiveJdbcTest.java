@@ -19,7 +19,7 @@ public class HiveJdbcTest {
 		}
 		
 		Connection con = DriverManager.getConnection(
-		                    "jdbc:hive2://192.168.126.131:10000/default", "lg", "lg-password");
+		                    "jdbc:hive2://192.168.126.131:9083/default", "lg", "");
 		Statement stmt = con.createStatement();
 		String tableName = "jdbcHive";
 		stmt.execute("drop table if exists " + tableName);
