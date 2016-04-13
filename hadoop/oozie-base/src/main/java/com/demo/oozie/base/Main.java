@@ -28,6 +28,7 @@ import org.apache.oozie.service.WorkflowAppService;
 import org.apache.oozie.servlet.BaseJobServlet;
 import org.apache.oozie.servlet.BaseJobsServlet;
 import org.apache.oozie.servlet.CallbackServlet;
+import org.apache.oozie.servlet.V1JobsServlet;
 import org.apache.oozie.store.Store;
 import org.apache.oozie.util.Instrumentation;
 import org.apache.oozie.workflow.WorkflowApp;
@@ -58,6 +59,7 @@ public class Main {
 	ActionCheckXCommand actionCheckXCommand;
 	BaseJobServlet baseJobServlet;
 	BaseJobsServlet baseJobsServlet;
+	V1JobsServlet v1JobsServlet;
 	
 	WorkflowActionBean workflowActionBean;
 	SignalXCommand signalXCommand;
