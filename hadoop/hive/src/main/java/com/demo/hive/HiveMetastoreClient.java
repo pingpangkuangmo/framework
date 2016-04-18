@@ -4,17 +4,14 @@ import org.apache.hadoop.hive.conf.HiveConf;
 import org.apache.hadoop.hive.metastore.HiveMetaStoreClient;
 import org.apache.hadoop.hive.metastore.api.Database;
 import org.apache.hadoop.hive.metastore.api.MetaException;
-import org.apache.hadoop.security.UserGroupInformation.HadoopLoginModule;
 import org.junit.Before;
 import org.junit.Test;
-
-import sun.util.logging.resources.logging;
 
 public class HiveMetastoreClient {
 	
 	HiveMetaStoreClient metaStoreClient = null;
 	
-	HadoopLoginModule loginModule;
+	//HadoopLoginModule loginModule;
 	//HadoopGroupMappingService hadoopGroupMappingService;
 
 	@Before
@@ -32,7 +29,7 @@ public class HiveMetastoreClient {
 	@Test
 	public void createDb() throws Exception{
 		Database database = new Database();
-		database.setName("test_lg");
+		database.setName("lgtest1");
 		database.setOwnerName("lg123");
 		metaStoreClient.createDatabase(database);
 	}
