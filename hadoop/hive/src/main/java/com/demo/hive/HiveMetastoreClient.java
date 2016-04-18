@@ -10,11 +10,16 @@ import org.junit.Test;
 public class HiveMetastoreClient {
 	
 	HiveMetaStoreClient metaStoreClient = null;
+	
+	//HadoopLoginModule loginModule;
+	//HadoopGroupMappingService hadoopGroupMappingService;
 
 	@Before
 	public void init(){
 		HiveConf conf = new HiveConf();
+		
 		try {
+			System.setProperty("HADOOP_USER_NAME", "admin");
 			metaStoreClient = new HiveMetaStoreClient(conf);
 		} catch (MetaException e) {
 			e.printStackTrace();
