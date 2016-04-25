@@ -1,5 +1,11 @@
 package com.demo.tomcat;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
+
 import org.apache.catalina.Engine;
 import org.apache.catalina.connector.Connector;
 import org.apache.catalina.core.StandardContext;
@@ -34,6 +40,12 @@ public class Main {
 	//Acceptor acceptor;
 	
 	//旧版本7.0
+	
+	ThreadPoolExecutor threadPoolExecutor;
+	FutureTask<String> futureTask;
+	Executors executors;
+	ScheduledExecutorService scheduledExecutorService;
+	ForkJoinPool forkJoinPool;
 	
 	
 }
