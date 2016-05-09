@@ -1,6 +1,0 @@
-<configuration>
-	<property>
-        <name>fs.default.name</name>
-        <value>hdfs://hadoop-yarn.dragon.org:8020</value>
-    </property>
-</configuration>
