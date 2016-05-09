@@ -22,11 +22,11 @@
       <scope>test</scope>
     </dependency>
     
-    <!-- <dependency>
+    <dependency>
 		<groupId>org.apache.tomcat</groupId>
 		<artifactId>tomcat-catalina</artifactId>
 		<version>8.5.0</version>
-	</dependency> -->
+	</dependency>
 	
 	<!-- <dependency>
 		<groupId>org.apache.tomcat</groupId>
@@ -40,7 +40,7 @@
 		<version>7.0.26</version>
 	</dependency> -->
     
-    <dependency>
+    <!-- <dependency>
 		<groupId>org.apache.tomcat</groupId>
 		<artifactId>tomcat-catalina</artifactId>
 		<version>7.0.0</version>
@@ -56,7 +56,7 @@
 		<groupId>org.apache.tomcat</groupId>
 		<artifactId>tomcat-util</artifactId>
 		<version>7.0.0</version>
-	</dependency> 
+	</dependency>  -->
     
   </dependencies>
 </project>
