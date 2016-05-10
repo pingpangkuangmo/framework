@@ -7,6 +7,8 @@ import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hdfs.DistributedFileSystem;
+import org.apache.hadoop.security.ShellBasedUnixGroupsMapping;
+import org.apache.hadoop.security.UserGroupInformation;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -17,6 +19,10 @@ public class AclTest {
 	private static Logger logger = LoggerFactory.getLogger(AclTest.class);
 	
 	private static DistributedFileSystem dfs = null;
+	
+	UserGroupInformation ugi;
+	ShellBasedUnixGroupsMapping shellBasedUnixGroupsMapping;
+	ThreadLocal ssd;
 
 	@Before
 	public void init(){
@@ -41,6 +47,19 @@ public class AclTest {
 	@Test
 	public void testListFiles(){
 		listFiles("hdfs://ns/user/op/lg/aa");
+	}
+	
+	@Test
+	public void logUgi(){
+		try {
+			UserGroupInformation ugi = UserGroupInformation.getCurrentUser();
+			String[] groups = ugi.getGroupNames();
+			for(String group : groups){
+				System.out.println(group);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void listAcls(String path){
