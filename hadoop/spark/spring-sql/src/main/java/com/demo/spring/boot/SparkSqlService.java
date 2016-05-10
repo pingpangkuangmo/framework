@@ -1,5 +1,6 @@
-package com.demo.service;
+package com.demo.spring.boot;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,25 +13,30 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.hive.HiveContext;
 import org.apache.spark.sql.types.StructField;
 import org.apache.spark.sql.types.StructType;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.stereotype.Service;
 
 import scala.collection.JavaConversions;
 
-@Service
-public class SparkSqlService implements InitializingBean{
-	
-	private HiveContext hiveContext;
+public class SparkSqlService implements Serializable{
 
-	public Object sql(String sql){
-		DataFrame df = hiveContext.sql(sql);
+	private static final long serialVersionUID = 1L;
+	
+	public void init(){
+		SparkConf conf = new SparkConf();
+    	SparkContext sc = new SparkContext(conf);
+    	SparkSqlUtil.hiveContext = new HiveContext(sc);
+	}
+
+	public List<Map<String, Object>> getData(String sql){
+		DataFrame df = SparkSqlUtil.hiveContext.sql(sql);
 		
 		StructType st = df.schema();
 		
 		final List<StructField> sfs = JavaConversions.asJavaList(st.toList());
+		df.show();
 		
-		@SuppressWarnings("serial")
 		List<Map<String, Object>> javaRdd = df.toJavaRDD().map(new Function<Row, Map<String, Object>>(){
+
+			private static final long serialVersionUID = 1L;
 
 			@Override
 			public Map<String, Object> call(Row v1) throws Exception {
@@ -45,11 +51,5 @@ public class SparkSqlService implements InitializingBean{
 		}).collect();
 		return javaRdd;
 	}
-
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		SparkConf conf = new SparkConf();
-		SparkContext sc = new SparkContext(conf);
-		hiveContext = new HiveContext(sc);
-	}
+	
 }
