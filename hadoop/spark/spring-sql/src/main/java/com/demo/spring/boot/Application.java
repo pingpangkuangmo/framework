@@ -24,13 +24,13 @@ public class Application{
 	
 	@RequestMapping("/")
     @ResponseBody
-    String home() {
-        return "Hello Spring boot and sprak-sql!";
+    public String home() {
+        return "Hello Spring boot and spark-sql!";
     }
 	
-	@RequestMapping("/sqltest")
+	@RequestMapping("/sql_test")
     @ResponseBody
-    Object sqltest() {
+	public Object sqlTest() {
         return sparkSqlService.getData("show tables");
     }
 	
@@ -56,7 +56,7 @@ public class Application{
     		
     	});
     	
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<>();
 		map.put("key1", "value1");
 		System.out.println(JSON.toJSONString(map, true));
 		System.out.println("start success !");

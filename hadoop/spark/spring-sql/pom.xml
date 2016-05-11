@@ -32,8 +32,8 @@
   				<artifactId>jackson-databind</artifactId>
             </exclusion>
             <exclusion>
+            	<groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-  				<packaging>jar</packaging>
             </exclusion>
             <exclusion>
                 <groupId>org.apache.tomcat.embed</groupId>
