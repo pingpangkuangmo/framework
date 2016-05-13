@@ -68,13 +68,7 @@
 		<version>1.5.1</version>
 	</dependency>
 	
-	<dependency>
-		<groupId>org.apache.spark</groupId>
-		<artifactId>spark-hive_2.10</artifactId>
-		<version>1.5.1</version>
-	</dependency>
-	
-	<dependency>
+      <dependency>
 		<groupId>com.alibaba</groupId>
 		<artifactId>fastjson</artifactId>
 		<version>1.2.8</version>
