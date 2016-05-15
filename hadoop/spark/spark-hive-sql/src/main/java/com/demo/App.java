@@ -9,6 +9,7 @@ import org.apache.spark.sql.hive.HiveContext;
 public class App {
 
     org.apache.spark.sql.hive.thriftserver.SparkSQLCLIDriver d;
+    org.apache.spark.sql.hive.thriftserver.HiveThriftServer2 hiveThriftServer2;
 
     static HiveContext hiveContext;
 
