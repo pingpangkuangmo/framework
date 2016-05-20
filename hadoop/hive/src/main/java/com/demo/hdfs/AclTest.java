@@ -46,7 +46,7 @@ public class AclTest {
 	
 	@Test
 	public void testListFiles(){
-		listFiles("hdfs://ns/user/op/lg/aa");
+		listFiles("hdfs://hadoop/user/op/lg/aa");
 	}
 	
 	@Test
