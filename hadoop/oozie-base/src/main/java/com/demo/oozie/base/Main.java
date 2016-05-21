@@ -1,5 +1,6 @@
 package com.demo.oozie.base;
 
+import org.apache.hadoop.mapred.JobClient;
 import org.apache.oozie.WorkflowActionBean;
 import org.apache.oozie.cli.OozieCLI;
 import org.apache.oozie.command.coord.CoordSubmitXCommand;
@@ -86,4 +87,6 @@ public class Main {
 	StartXCommand startXCommand;
 	
 	CoordSubmitXCommand coordSubmitXCommand;
+	
+	JobClient jobClient;
 }
