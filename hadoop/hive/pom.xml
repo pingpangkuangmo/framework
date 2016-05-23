@@ -15,7 +15,7 @@
     <hadoop.version>2.6.0</hadoop.version>
     <hive.version>1.1.0</hive.version>
   </properties>
-
+ 
   <dependencies>
     <dependency> 
       <groupId>junit</groupId>
@@ -23,7 +23,7 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
-    
+     
     <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-mapreduce-client-hs</artifactId>
@@ -115,6 +115,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        
+        <dependency>
+	        <groupId>org.apache.sentry</groupId>
+	        <artifactId>sentry-binding-hive</artifactId>
+	        <version>1.7.0-incubating-SNAPSHOT</version>
+	      </dependency>
 
   </dependencies>
 </project>
