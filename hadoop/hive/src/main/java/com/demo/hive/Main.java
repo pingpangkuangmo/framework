@@ -2,9 +2,14 @@ package com.demo.hive;
 
 import java.io.UnsupportedEncodingException;
 
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hdfs.server.namenode.NameNode;
+import org.apache.hadoop.hive.cli.CliDriver;
 import org.apache.hadoop.hive.conf.HiveConf;
 import org.apache.hadoop.hive.metastore.HiveMetaStore;
 import org.apache.hadoop.hive.metastore.HiveMetaStore.HMSHandler;
+import org.apache.hadoop.hive.metastore.MetaStoreEventListener;
+import org.apache.hadoop.hive.metastore.MetaStorePreEventListener;
 import org.apache.hadoop.hive.metastore.ObjectStore;
 import org.apache.hadoop.hive.ql.Driver;
 import org.apache.hadoop.hive.ql.HiveDriverRunHook;
@@ -22,6 +27,7 @@ import org.apache.hadoop.hive.ql.security.authorization.HiveAuthorizationProvide
 import org.apache.hadoop.hive.ql.security.authorization.StorageBasedAuthorizationProvider;
 import org.apache.hadoop.hive.ql.security.authorization.plugin.HiveAuthorizer;
 import org.apache.hadoop.hive.ql.security.authorization.plugin.HiveAuthorizerFactory;
+import org.apache.hadoop.security.Groups;
 import org.apache.hive.service.cli.CLIService;
 import org.apache.hive.service.cli.SessionHandle;
 import org.apache.hive.service.cli.session.HiveSession;
@@ -49,6 +55,7 @@ public class Main {
 	
 	HiveAuthorizationProvider hiveAuthorizationProvider;
 	Driver driver;
+	CliDriver cliDriver;
 	
 	
 	HiveAuthorizationTaskFactoryImpl hiveAuthorizationTaskFactoryImpl;
@@ -79,6 +86,16 @@ public class Main {
 	
 	Hive hive;
 	NullPointerException npe;
+	Groups groups;
+	
+	//DefaultAuthorizationProvider defaultAuthorizationProvider;
+	
+	Configuration conf;
+	
+	NameNode nameNode;
+	
+	MetaStoreEventListener metaStoreEventListener;
+	MetaStorePreEventListener metaStorePreEventListener;
 	
 	public static void main(String[] args) throws UnsupportedEncodingException{
 		if(null instanceof Object){

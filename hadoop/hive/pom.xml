@@ -37,32 +37,19 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-common</artifactId>
-            <version>${hadoop.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.thrift</groupId>
-                    <artifactId>libthrift</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>tomcat</groupId>
-                    <artifactId>jasper-runtime</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>tomcat</groupId>
-                    <artifactId>jasper-compiler</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.servlet.jsp</groupId>
-                    <artifactId>jsp-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>servlet-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+		  <groupId>org.apache.hadoop</groupId>
+		  <artifactId>hadoop-common</artifactId>
+		  <version>2.6.0</version>
+		</dependency>
+		
+		<!-- http://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+		    <groupId>com.google.guava</groupId>
+		    <artifactId>guava</artifactId>
+		    <version>14.0.1</version>
+		</dependency>
+		
+        
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-hdfs</artifactId>
@@ -101,6 +88,12 @@
       <dependency>
           <groupId>org.apache.hive</groupId>
           <artifactId>hive-jdbc</artifactId>
+          <version>${hive.version}</version>
+      </dependency>
+      
+      <dependency>
+          <groupId>org.apache.hive</groupId>
+          <artifactId>hive-cli</artifactId>
           <version>${hive.version}</version>
       </dependency>
       
