@@ -2,11 +2,13 @@ package com.demo.hive;
 
 import java.io.UnsupportedEncodingException;
 
+import org.apache.hadoop.hive.conf.HiveConf;
 import org.apache.hadoop.hive.metastore.HiveMetaStore;
 import org.apache.hadoop.hive.metastore.HiveMetaStore.HMSHandler;
 import org.apache.hadoop.hive.metastore.ObjectStore;
 import org.apache.hadoop.hive.ql.Driver;
 import org.apache.hadoop.hive.ql.HiveDriverRunHook;
+import org.apache.hadoop.hive.ql.metadata.Hive;
 import org.apache.hadoop.hive.ql.parse.AbstractSemanticAnalyzerHook;
 import org.apache.hadoop.hive.ql.parse.HiveSemanticAnalyzerHook;
 import org.apache.hadoop.hive.ql.parse.authorization.HiveAuthorizationTaskFactoryImpl;
@@ -20,6 +22,7 @@ import org.apache.hadoop.hive.ql.security.authorization.HiveAuthorizationProvide
 import org.apache.hadoop.hive.ql.security.authorization.StorageBasedAuthorizationProvider;
 import org.apache.hadoop.hive.ql.security.authorization.plugin.HiveAuthorizer;
 import org.apache.hadoop.hive.ql.security.authorization.plugin.HiveAuthorizerFactory;
+import org.apache.hive.service.cli.CLIService;
 import org.apache.hive.service.cli.SessionHandle;
 import org.apache.hive.service.cli.session.HiveSession;
 import org.apache.hive.service.cli.session.HiveSessionHook;
@@ -36,6 +39,9 @@ public class Main {
 	HiveSession hiveSession;
 	SessionHandle sessionHandler;
 	TCLIService tCLIService;
+	HiveConf hiveConf;
+	CLIService cliService;
+	
 
 	HiveAuthorizationTaskFactoryImpl hiveAuthorizationTaskFactory;
 	AbstractSemanticAnalyzerHook hook;
@@ -71,8 +77,15 @@ public class Main {
 	
 	HMSHandler handler;
 	
+	Hive hive;
+	NullPointerException npe;
+	
 	public static void main(String[] args) throws UnsupportedEncodingException{
-
+		if(null instanceof Object){
+			System.out.println("sss");
+		}else{
+			System.out.println("ffdf");
+		}
 	}
 }
                                                                                                         
