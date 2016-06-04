@@ -25,6 +25,7 @@ import org.apache.hadoop.hive.ql.security.authorization.HiveAuthorizationProvide
 import org.apache.hadoop.hive.ql.security.authorization.StorageBasedAuthorizationProvider;
 import org.apache.hadoop.hive.ql.security.authorization.plugin.HiveAuthorizer;
 import org.apache.hadoop.hive.ql.security.authorization.plugin.HiveAuthorizerFactory;
+import org.apache.hadoop.hive.ql.security.authorization.plugin.HivePrivilege;
 import org.apache.hadoop.security.Groups;
 import org.apache.hive.service.cli.SessionHandle;
 import org.apache.hive.service.cli.session.HiveSession;
@@ -88,6 +89,8 @@ public class Main {
 	
 	MetaStoreEventListener metaStoreEventListener;
 	MetaStorePreEventListener metaStorePreEventListener;
+	
+	HivePrivilege hivePrivilege;
 	
 	public static void main(String[] args) throws UnsupportedEncodingException{
 
