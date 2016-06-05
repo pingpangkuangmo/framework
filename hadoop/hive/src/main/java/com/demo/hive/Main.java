@@ -13,6 +13,7 @@ import org.apache.hadoop.hive.metastore.MetaStorePreEventListener;
 import org.apache.hadoop.hive.metastore.ObjectStore;
 import org.apache.hadoop.hive.ql.Driver;
 import org.apache.hadoop.hive.ql.HiveDriverRunHook;
+import org.apache.hadoop.hive.ql.exec.DDLTask;
 import org.apache.hadoop.hive.ql.metadata.Hive;
 import org.apache.hadoop.hive.ql.parse.AbstractSemanticAnalyzerHook;
 import org.apache.hadoop.hive.ql.parse.HiveSemanticAnalyzerHook;
@@ -99,6 +100,7 @@ public class Main {
 	MetaStorePreEventListener metaStorePreEventListener;
 	
 	HivePrivilege hivePrivilege;
+	DDLTask ddlTask;
 	
 	public static void main(String[] args) throws UnsupportedEncodingException{
 		if(null instanceof Object){
