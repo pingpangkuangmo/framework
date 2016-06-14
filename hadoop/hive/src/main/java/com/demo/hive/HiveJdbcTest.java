@@ -6,11 +6,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.ipc.RPC.Server;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.security.UserGroupInformation;
+
 public class HiveJdbcTest {
 
 	private static String driverName = "org.apache.hive.jdbc.HiveDriver";
+	
 
-	public static void main(String[] args)throws SQLException {
+	Server server;
+	public static void main(String[] args)throws Exception {
+		
+		UserGroupInformation.createProxyUser("lg",UserGroupInformation.getLoginUser());
+		Job job;
+		Configuration conf;
 		try {
 		    Class.forName(driverName);
 		} catch (ClassNotFoundException e) {

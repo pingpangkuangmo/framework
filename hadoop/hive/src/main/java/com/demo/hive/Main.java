@@ -37,6 +37,7 @@ import org.apache.hive.service.cli.session.HiveSessionHook;
 import org.apache.hive.service.cli.session.SessionManager;
 import org.apache.hive.service.cli.thrift.TCLIService;
 import org.apache.hive.service.server.HiveServer2;
+import org.apache.thrift.server.TServer;
 
 public class Main {
 
@@ -101,6 +102,8 @@ public class Main {
 	
 	HivePrivilege hivePrivilege;
 	DDLTask ddlTask;
+	
+	TServer tServer;
 	
 	public static void main(String[] args) throws UnsupportedEncodingException{
 		if(null instanceof Object){
