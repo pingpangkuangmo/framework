@@ -6,7 +6,10 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.fs.permission.AclEntry;
+import org.apache.hadoop.hdfs.DFSClient;
 import org.apache.hadoop.hdfs.DistributedFileSystem;
+import org.apache.hadoop.hdfs.server.namenode.dfsclusterhealth_jsp;
 import org.apache.hadoop.security.ShellBasedUnixGroupsMapping;
 import org.apache.hadoop.security.UserGroupInformation;
 import org.junit.Before;
@@ -23,6 +26,8 @@ public class AclTest {
 	UserGroupInformation ugi;
 	ShellBasedUnixGroupsMapping shellBasedUnixGroupsMapping;
 	ThreadLocal ssd;
+	DFSClient dfsClient;
+	AclEntry aclEntry;
 
 	@Before
 	public void init(){

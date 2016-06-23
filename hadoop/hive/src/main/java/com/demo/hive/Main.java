@@ -29,6 +29,7 @@ import org.apache.hadoop.hive.ql.security.authorization.StorageBasedAuthorizatio
 import org.apache.hadoop.hive.ql.security.authorization.plugin.HiveAuthorizer;
 import org.apache.hadoop.hive.ql.security.authorization.plugin.HiveAuthorizerFactory;
 import org.apache.hadoop.hive.ql.security.authorization.plugin.HivePrivilege;
+import org.apache.hadoop.hive.thrift.HadoopThriftAuthBridge;
 import org.apache.hadoop.security.Groups;
 import org.apache.hive.service.cli.CLIService;
 import org.apache.hive.service.cli.SessionHandle;
@@ -42,6 +43,7 @@ import org.apache.thrift.server.TServer;
 public class Main {
 
 	HiveMetaStore hiveMetaStore;
+	HadoopThriftAuthBridge hadoopThriftAuthBridge;
 
 	HiveServer2 hiveServer2;
 	SessionManager sessionManager;
