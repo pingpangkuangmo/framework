@@ -3,7 +3,6 @@ package com.demo.hive;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.apache.hadoop.fs.permission.FsAction;
@@ -11,6 +10,8 @@ import org.apache.hadoop.hdfs.DistributedFileSystem;
 import org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos.ClientNamenodeProtocol;
 import org.apache.hadoop.hdfs.server.namenode.NameNode;
 import org.apache.hadoop.ipc.RPC.Server;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.security.UserGroupInformation;
 
 public class HiveJdbcTest {
@@ -28,7 +29,12 @@ public class HiveJdbcTest {
 	
 	DistributedFileSystem afsf;
 
-	public static void main(String[] args)throws SQLException {
+	Server server;
+	public static void main(String[] args)throws Exception {
+		
+		UserGroupInformation.createProxyUser("lg",UserGroupInformation.getLoginUser());
+		Job job;
+		Configuration conf;
 		try {
 		    Class.forName(driverName);
 		} catch (ClassNotFoundException e) {

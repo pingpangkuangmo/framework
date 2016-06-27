@@ -13,6 +13,7 @@ import org.apache.hadoop.hive.metastore.MetaStorePreEventListener;
 import org.apache.hadoop.hive.metastore.ObjectStore;
 import org.apache.hadoop.hive.ql.Driver;
 import org.apache.hadoop.hive.ql.HiveDriverRunHook;
+import org.apache.hadoop.hive.ql.exec.DDLTask;
 import org.apache.hadoop.hive.ql.metadata.Hive;
 import org.apache.hadoop.hive.ql.parse.AbstractSemanticAnalyzerHook;
 import org.apache.hadoop.hive.ql.parse.HiveSemanticAnalyzerHook;
@@ -27,6 +28,8 @@ import org.apache.hadoop.hive.ql.security.authorization.HiveAuthorizationProvide
 import org.apache.hadoop.hive.ql.security.authorization.StorageBasedAuthorizationProvider;
 import org.apache.hadoop.hive.ql.security.authorization.plugin.HiveAuthorizer;
 import org.apache.hadoop.hive.ql.security.authorization.plugin.HiveAuthorizerFactory;
+import org.apache.hadoop.hive.ql.security.authorization.plugin.HivePrivilege;
+import org.apache.hadoop.hive.thrift.HadoopThriftAuthBridge;
 import org.apache.hadoop.security.Groups;
 import org.apache.hive.service.cli.CLIService;
 import org.apache.hive.service.cli.SessionHandle;
@@ -35,10 +38,12 @@ import org.apache.hive.service.cli.session.HiveSessionHook;
 import org.apache.hive.service.cli.session.SessionManager;
 import org.apache.hive.service.cli.thrift.TCLIService;
 import org.apache.hive.service.server.HiveServer2;
+import org.apache.thrift.server.TServer;
 
 public class Main {
 
 	HiveMetaStore hiveMetaStore;
+	HadoopThriftAuthBridge hadoopThriftAuthBridge;
 
 	HiveServer2 hiveServer2;
 	SessionManager sessionManager;
@@ -96,6 +101,11 @@ public class Main {
 	
 	MetaStoreEventListener metaStoreEventListener;
 	MetaStorePreEventListener metaStorePreEventListener;
+	
+	HivePrivilege hivePrivilege;
+	DDLTask ddlTask;
+	
+	TServer tServer;
 	
 	public static void main(String[] args) throws UnsupportedEncodingException{
 		String[] parts = ":r-x:false".split(":");
