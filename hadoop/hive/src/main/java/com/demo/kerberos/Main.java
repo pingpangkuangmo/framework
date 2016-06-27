@@ -8,7 +8,7 @@ import org.apache.hadoop.security.UserGroupInformation;
 
 public class Main {
 
-	Krb5LoginModule krb5LoginModule;
+	//Krb5LoginModule krb5LoginModule;
 	UserGroupInformation ugi;
 	Server server;
 	
