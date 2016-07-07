@@ -8,6 +8,7 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hdfs.DFSClient;
 import org.apache.hadoop.hdfs.DistributedFileSystem;
+import org.apache.hadoop.hdfs.protocol.ClientProtocol;
 import org.apache.hadoop.hdfs.server.namenode.NameNode;
 import org.apache.hadoop.fs.permission.AclEntry;
 import org.apache.hadoop.security.ShellBasedUnixGroupsMapping;
@@ -32,6 +33,8 @@ public class AclTest {
 	OperationManager operationManager;
 	ThreadLocal ssd;
 	AclEntry aclEntry;
+	
+	ClientProtocol clientProtocol;
 
 	@Before
 	public void init(){
