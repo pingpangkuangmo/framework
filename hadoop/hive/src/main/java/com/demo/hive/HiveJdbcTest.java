@@ -3,11 +3,14 @@ package com.demo.hive;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.permission.FsAction;
+import org.apache.hadoop.hdfs.DistributedFileSystem;
+import org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos.ClientNamenodeProtocol;
+import org.apache.hadoop.hdfs.server.namenode.NameNode;
 import org.apache.hadoop.ipc.RPC.Server;
+import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.security.UserGroupInformation;
 
@@ -15,6 +18,16 @@ public class HiveJdbcTest {
 
 	private static String driverName = "org.apache.hive.jdbc.HiveDriver";
 	
+	NameNode namenode;
+	
+	Server processConnectionContext;
+	
+	//HttpFSFileSystem.Operation ssd;
+	FsAction fsAction;
+	
+	ClientNamenodeProtocol clientNamenodeProtocol;
+	
+	DistributedFileSystem afsf;
 
 	Server server;
 	public static void main(String[] args)throws Exception {
@@ -28,6 +41,8 @@ public class HiveJdbcTest {
 		    e.printStackTrace();
 		    System.exit(1);
 		}
+		
+		//UserGroupInformation.createProxyUser(user, realUser);
 		
 		//Connection con = DriverManager.getConnection("jdbc:hive2://192.168.126.131:9083/default", "lg", "");
 		Connection con = DriverManager.getConnection("jdbc:hive2://10.142.78.40:10000", "admin", "");

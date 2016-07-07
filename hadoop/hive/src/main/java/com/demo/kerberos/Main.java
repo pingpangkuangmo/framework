@@ -1,5 +1,10 @@
 package com.demo.kerberos;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.TreeMap;
+
 import javax.security.sasl.SaslClient;
 import javax.security.sasl.SaslServer;
 
@@ -24,4 +29,11 @@ public class Main {
 	
 	HiveMetaStore hiveMetaStore;
 	
+	TreeMap treeMap;
+	
+	public static void main(String[] args){
+		List<String> lists = new ArrayList<String>();
+		Collections.sort(lists);
+		
+	}
 }

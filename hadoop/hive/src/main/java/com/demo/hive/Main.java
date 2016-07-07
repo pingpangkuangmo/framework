@@ -108,10 +108,9 @@ public class Main {
 	TServer tServer;
 	
 	public static void main(String[] args) throws UnsupportedEncodingException{
-		if(null instanceof Object){
-			System.out.println("sss");
-		}else{
-			System.out.println("ffdf");
+		String[] parts = ":r-x:false".split(":");
+		for(String item : parts){
+			System.out.println(item);
 		}
 	}
 }

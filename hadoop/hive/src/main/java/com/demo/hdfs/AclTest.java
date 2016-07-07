@@ -6,12 +6,14 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.fs.permission.AclEntry;
 import org.apache.hadoop.hdfs.DFSClient;
 import org.apache.hadoop.hdfs.DistributedFileSystem;
-import org.apache.hadoop.hdfs.server.namenode.dfsclusterhealth_jsp;
+import org.apache.hadoop.hdfs.protocol.ClientProtocol;
+import org.apache.hadoop.hdfs.server.namenode.NameNode;
+import org.apache.hadoop.fs.permission.AclEntry;
 import org.apache.hadoop.security.ShellBasedUnixGroupsMapping;
 import org.apache.hadoop.security.UserGroupInformation;
+import org.apache.hive.service.cli.operation.OperationManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -25,9 +27,14 @@ public class AclTest {
 	
 	UserGroupInformation ugi;
 	ShellBasedUnixGroupsMapping shellBasedUnixGroupsMapping;
-	ThreadLocal ssd;
+	NameNode namenode;
 	DFSClient dfsClient;
+	
+	OperationManager operationManager;
+	ThreadLocal ssd;
 	AclEntry aclEntry;
+	
+	ClientProtocol clientProtocol;
 
 	@Before
 	public void init(){
