@@ -30,9 +30,10 @@ public class HiveJdbcTest {
 		@Override
 		public void run() {
 			try {
-				Connection con = DriverManager.getConnection("jdbc:hive2://hadoop:10000?connectTimeout=600000", "lg", "");
+				Connection con = DriverManager.getConnection("jdbc:hive2://hadoop-yarn.dragon.org:10000", "lg", "");
 				Statement stmt = con.createStatement();
-				String tableName = "customers";
+				String tableName = "db1_t1";
+				stmt.executeQuery("use db1");
 				String sql = "select * from " + tableName;
 				stmt.executeQuery(sql);
 				succeedNum.incrementAndGet();
