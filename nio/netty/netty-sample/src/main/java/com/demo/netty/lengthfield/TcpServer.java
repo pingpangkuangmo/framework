@@ -3,10 +3,7 @@ package com.demo.netty.lengthfield;
 import java.nio.charset.Charset;
 
 import io.netty.bootstrap.ServerBootstrap;
-<<<<<<< HEAD
 import io.netty.buffer.ByteBuf;
-=======
->>>>>>> f17dce85fee1b98e972e66a75d1621fdb483c1f7
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
