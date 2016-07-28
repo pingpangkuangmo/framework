@@ -6,7 +6,7 @@ import com.demo.sort.util.SortUtil;
 
 public class BubbleSort {
 	
-	int[] arr = {4, 6, 8, 1, 5, 9, 2, 7, 3};
+	int[] arr = {4, 6, 8, 1, 5, 9, 2, 7, 10, 3};
 
 	
 	@Test
