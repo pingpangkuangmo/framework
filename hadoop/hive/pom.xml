@@ -23,7 +23,141 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
-     
+    
+    <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-continuation -->
+<dependency>
+    <groupId>org.eclipse.jetty</groupId>
+    <artifactId>jetty-continuation</artifactId>
+    <version>9.2.10.v20150310</version>
+</dependency>
+    
+     <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-plus -->
+<dependency>
+    <groupId>org.eclipse.jetty</groupId>
+    <artifactId>jetty-plus</artifactId>
+    <version>9.2.10.v20150310</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-webapp -->
+<dependency>
+    <groupId>org.eclipse.jetty</groupId>
+    <artifactId>jetty-webapp</artifactId>
+    <version>9.2.10.v20150310</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-xml -->
+<dependency>
+    <groupId>org.eclipse.jetty</groupId>
+    <artifactId>jetty-xml</artifactId>
+    <version>9.2.10.v20150310</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-jndi -->
+<dependency>
+    <groupId>org.eclipse.jetty</groupId>
+    <artifactId>jetty-jndi</artifactId>
+    <version>9.2.10.v20150310</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.scalatra/scalatra-jetty_2.10 -->
+<dependency>
+    <groupId>org.scalatra</groupId>
+    <artifactId>scalatra-jetty_2.10</artifactId>
+    <version>2.3.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpmime -->
+<dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpmime</artifactId>
+    <version>4.2.5</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.scalatest/scalatest_2.10 -->
+<dependency>
+    <groupId>org.scalatest</groupId>
+    <artifactId>scalatest_2.10</artifactId>
+    <version>2.2.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.json4s/json4s_2.10 -->
+<dependency>
+    <groupId>org.json4s</groupId>
+    <artifactId>json4s_2.10</artifactId>
+    <version>3.2.5</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.json4s/json4s-jackson_2.10 -->
+<dependency>
+    <groupId>org.json4s</groupId>
+    <artifactId>json4s-jackson_2.10</artifactId>
+    <version>3.2.5</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.2.2</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.scala-lang/scala-compiler -->
+<dependency>
+    <groupId>org.scala-lang</groupId>
+    <artifactId>scala-compiler</artifactId>
+    <version>2.10.5</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.scala-lang/scala-reflect -->
+<dependency>
+    <groupId>org.scala-lang</groupId>
+    <artifactId>scala-reflect</artifactId>
+    <version>2.10.5</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.scala-lang/jline -->
+<dependency>
+    <groupId>org.scala-lang</groupId>
+    <artifactId>jline</artifactId>
+    <version>2.10.5</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-core -->
+<dependency>
+    <groupId>io.dropwizard.metrics</groupId>
+    <artifactId>metrics-core</artifactId>
+    <version>3.1.1</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-graphite -->
+<dependency>
+    <groupId>io.dropwizard.metrics</groupId>
+    <artifactId>metrics-ganglia</artifactId>
+    <version>3.1.1</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-graphite -->
+<dependency>
+    <groupId>io.dropwizard.metrics</groupId>
+    <artifactId>metrics-graphite</artifactId>
+    <version>3.1.1</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-graphite -->
+<dependency>
+    <groupId>io.dropwizard.metrics</groupId>
+    <artifactId>metrics-healthchecks</artifactId>
+    <version>3.1.1</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-graphite -->
+<dependency>
+    <groupId>io.dropwizard.metrics</groupId>
+    <artifactId>metrics-json</artifactId>
+    <version>3.1.1</version>
+</dependency>
+
+
     <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-mapreduce-client-hs</artifactId>
@@ -49,6 +183,19 @@
 			<version>${hadoop.version}</version>
 			<type>war</type>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.maven.surefire</groupId>
+		    <artifactId>maven-surefire-common</artifactId>
+			<version>2.9</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-shade-plugin -->
+		<dependency>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-shade-plugin</artifactId>
+		    <version>1.7.1</version>
+		</dependency>
+
 		
 		
 		<!-- http://mvnrepository.com/artifact/com.google.guava/guava -->

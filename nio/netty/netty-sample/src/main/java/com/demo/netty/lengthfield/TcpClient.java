@@ -23,7 +23,7 @@ public class TcpClient {
 	            out = new DataOutputStream(socket.getOutputStream());   
 	            in = socket.getInputStream();  
 	              
-	         // 请求服务器  
+	            // 请求服务器  
 	            String data1 = "牛顿";  
 	            byte[] outputBytes1 = data1.getBytes("UTF-8");  
 	            out.writeInt(outputBytes1.length); // write header  

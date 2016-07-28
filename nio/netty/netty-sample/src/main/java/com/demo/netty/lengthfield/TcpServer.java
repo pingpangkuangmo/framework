@@ -3,6 +3,7 @@ package com.demo.netty.lengthfield;
 import java.nio.charset.Charset;
 
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.buffer.ByteBufAllocator;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
@@ -16,6 +17,7 @@ import io.netty.handler.codec.string.StringDecoder;
 public class TcpServer {
 	
 	NioEventLoop aas;
+	ByteBufAllocator byteBufAllocator;
 
 	public static void main(String[] args){
 		EventLoopGroup bossGroup=new NioEventLoopGroup();
