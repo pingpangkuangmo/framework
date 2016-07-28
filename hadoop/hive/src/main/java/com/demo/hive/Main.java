@@ -15,6 +15,7 @@ import org.apache.hadoop.hive.ql.Driver;
 import org.apache.hadoop.hive.ql.HiveDriverRunHook;
 import org.apache.hadoop.hive.ql.exec.DDLTask;
 import org.apache.hadoop.hive.ql.metadata.Hive;
+import org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient;
 import org.apache.hadoop.hive.ql.parse.AbstractSemanticAnalyzerHook;
 import org.apache.hadoop.hive.ql.parse.HiveSemanticAnalyzerHook;
 import org.apache.hadoop.hive.ql.parse.authorization.HiveAuthorizationTaskFactoryImpl;
@@ -106,6 +107,8 @@ public class Main {
 	DDLTask ddlTask;
 	
 	TServer tServer;
+	
+	SessionHiveMetaStoreClient sessionHiveMetaStoreClient;
 	
 	public static void main(String[] args) throws UnsupportedEncodingException{
 		String[] parts = ":r-x:false".split(":");
