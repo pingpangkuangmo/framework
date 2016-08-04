@@ -1,5 +1,8 @@
 package com.demo.hbase;
 
+import java.util.concurrent.Future;
+import java.util.concurrent.FutureTask;
+
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.HTable;
 
@@ -22,5 +25,8 @@ public class Main {
 	HBaseRPC hBaseRPC;
 	User user;*/
 	
+	Future<?> f;
+	FutureTask<?> futureTask;
+	Object obj;
 	
 }
