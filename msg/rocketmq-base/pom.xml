@@ -1,0 +1,62 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.demo</groupId>
+  <artifactId>rocketmq-base</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
+
+  <name>rocketmq-base</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <!-- https://mvnrepository.com/artifact/com.alibaba.rocketmq/rocketmq-client -->
+<dependency>
+    <groupId>com.alibaba.rocketmq</groupId>
+    <artifactId>rocketmq-client</artifactId>
+    <version>3.5.9</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.alibaba.rocketmq/rocketmq-common -->
+<dependency>
+    <groupId>com.alibaba.rocketmq</groupId>
+    <artifactId>rocketmq-common</artifactId>
+    <version>3.5.9</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.alibaba.rocketmq/rocketmq-store -->
+<dependency>
+    <groupId>com.alibaba.rocketmq</groupId>
+    <artifactId>rocketmq-store</artifactId>
+    <version>3.2.6</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.alibaba.rocketmq/rocketmq-remoting -->
+<dependency>
+    <groupId>com.alibaba.rocketmq</groupId>
+    <artifactId>rocketmq-remoting</artifactId>
+    <version>3.5.9</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.alibaba.rocketmq/rocketmq-broker -->
+<dependency>
+    <groupId>com.alibaba.rocketmq</groupId>
+    <artifactId>rocketmq-broker</artifactId>
+    <version>3.2.6</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.alibaba.rocketmq/rocketmq-namesrv -->
+<dependency>
+    <groupId>com.alibaba.rocketmq</groupId>
+    <artifactId>rocketmq-namesrv</artifactId>
+    <version>3.2.6</version>
+</dependency>
+
+
+  </dependencies>
+</project>

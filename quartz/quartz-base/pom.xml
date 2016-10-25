@@ -54,7 +54,7 @@
     <dependency>
 		<groupId>org.quartz-scheduler</groupId>
 		<artifactId>quartz</artifactId>
-		<version>2.2.1</version>
+		<version>2.2.3</version>
 	</dependency>
 	
 	<!-- spring-support -->
@@ -82,14 +82,5 @@
     	<version>2.4</version>
 	</dependency>
 	
-	<dependency>
-    	<groupId>tools.sysdev.python.joblog.client</groupId>
-    	<artifactId>JobLogClient</artifactId>
-    	<version>0.1-test</version>
-	</dependency>
-	
-	
-	
-    
   </dependencies>
 </project>

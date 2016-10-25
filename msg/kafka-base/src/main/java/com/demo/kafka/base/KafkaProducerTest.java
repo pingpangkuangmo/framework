@@ -2,7 +2,10 @@ package com.demo.kafka.base;
 
 import java.util.Properties;
 
+import kafka.javaapi.message.MessageSet;
+import kafka.server.KafkaApis;
 import org.I0Itec.zkclient.ZkClient;
+import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.common.utils.Utils;
 
 import kafka.api.LeaderAndIsr;
@@ -22,7 +25,7 @@ import kafka.utils.ReplicationUtils;
 import kafka.utils.ZkUtils;
 
 
-public class KafkaProducer {
+public class KafkaProducerTest {
 	
 	kafka.Kafka kafka;
 	SocketServer socketServer;
@@ -39,6 +42,12 @@ public class KafkaProducer {
 	ZookeeperLeaderElector zookeeperLeaderElector;
 	KafkaServer kafkaServer;
 	GroupCoordinator groupCoordinator;
+	kafka.producer.Producer dd;
+	MessageSet messageAndOffsets;
+	GroupCoordinator GroupCoordinator;
+
+
+	KafkaApis kafkaApis;
 
 	public static void main(String[] args){
 		Properties props=new Properties();
@@ -49,11 +58,16 @@ public class KafkaProducer {
 		ProducerConfig config = new ProducerConfig(props);
 		Producer<String,String> producer=new Producer<String,String>(config);
 		Long count=0L;
+
 		while(true){
 			KeyedMessage<String, String> msg = new KeyedMessage<String, String>(topic,"一一"+count);
 			producer.send(msg);
 			count++;
 		}
 		
+	}
+
+	public static void test(){
+		KafkaProducer kafkaProducer;
 	}
 }

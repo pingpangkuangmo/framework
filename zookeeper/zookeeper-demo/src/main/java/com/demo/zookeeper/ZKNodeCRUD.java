@@ -50,6 +50,7 @@ public class ZKNodeCRUD implements Watcher{
 	ClientCnxn clientCnxn;
 	Session session;
 	QuorumPeerMain quorumPeerMain;
+	//QuorumPeer QuorumPeer;
 	FastLeaderElection fastLeaderElection;
 	ZooKeeperServer zooKeeperServer;
 	QuorumCnxManager quorumCnxManager;

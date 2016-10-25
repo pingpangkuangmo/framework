@@ -1,5 +1,6 @@
 package com.demo.redis;
 
+import java.net.SocketTimeoutException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -11,11 +12,17 @@ import org.junit.Test;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
+import redis.clients.util.RedisInputStream;
+import redis.clients.util.RedisOutputStream;
 
 public class JedisTest {
 
 	JedisPool pool;
     Jedis jedis;
+    RedisOutputStream redisOutputStream;
+    RedisInputStream redisInputStream;
+    SocketTimeoutException SocketTimeoutException;
+    
     @Before
     public void setUp() {
         pool = new JedisPool(new JedisPoolConfig(), "localhost");

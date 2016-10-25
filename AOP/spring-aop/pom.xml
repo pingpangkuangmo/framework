@@ -10,7 +10,7 @@
   
   
   <properties>
-        <org.springframework.version>4.0.5.RELEASE</org.springframework.version>
+        <org.springframework.version>4.2.0.RELEASE</org.springframework.version>
   </properties> 
   
   <dependencies>
@@ -26,7 +26,16 @@
 		    <artifactId>jsp-api</artifactId>
 		    <version>2.0</version>
 		    <scope>provided</scope>
-		</dependency>  
+		</dependency> 
+		
+		<!-- https://mvnrepository.com/artifact/javax.transaction/jta -->
+		<dependency>
+		    <groupId>javax.transaction</groupId>
+		    <artifactId>jta</artifactId>
+		    <version>1.1</version>
+		</dependency>
+
+		 
 
 		<!-- Logging -->
 		<dependency>
@@ -102,7 +111,7 @@
 		<groupId>c3p0</groupId> 
 		<artifactId>c3p0</artifactId> 
 		<version>0.9.1.2</version> 
-	</dependency> 
+	</dependency>
 	
 	<dependency> 
 		<groupId>commons-io</groupId> 

@@ -12,13 +12,18 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.LockSupport;
 
+import javax.servlet.ServletContextListener;
+
 import org.apache.catalina.Engine;
 import org.apache.catalina.connector.Connector;
+import org.apache.catalina.core.ApplicationContext;
 import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.core.StandardServer;
 import org.apache.catalina.core.StandardService;
+import org.apache.catalina.loader.WebappClassLoaderBase;
 import org.apache.catalina.startup.Catalina;
 import org.apache.catalina.startup.CatalinaProperties;
+import org.apache.coyote.AbstractProtocol;
 import org.apache.tomcat.util.net.AbstractEndpoint.Acceptor;
 import org.apache.tomcat.util.net.NioEndpoint;
 import org.apache.tomcat.util.net.NioEndpoint.Poller;
@@ -40,6 +45,7 @@ public class Main {
 	org.apache.catalina.startup.Bootstrap st;
 	
 	NioEndpoint nioEndpoint;
+	Executors executors2;
 	
 	Catalina catalina;
 	CatalinaProperties catalinaProperties;
@@ -62,6 +68,10 @@ public class Main {
 	Hashtable asd;
 	Lock lock;
 	
-	
+	ServletContextListener  dssdl;
+	WebappClassLoaderBase sds;
+	AbstractProtocol<?> sdfdsfd;
+	StandardService standardService2;
+	StandardServer standardServer2;
 	
 }

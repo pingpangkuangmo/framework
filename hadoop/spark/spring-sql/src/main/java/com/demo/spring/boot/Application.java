@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 
 @RestController
 @ComponentScan
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Application{
 
 	private static boolean run = true;
-
+	
     private static Logger logger = LoggerFactory.getLogger(Application.class);
 	
 	@RequestMapping("/")

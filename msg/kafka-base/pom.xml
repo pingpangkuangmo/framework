@@ -12,10 +12,6 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <!-- <hbase.version>0.94.2-cdh4.2.1</hbase.version> -->
-    <hbase.version>0.94.2</hbase.version>
-	<!-- <hadoop-common.version>2.0.0-cdh4.3.0</hadoop-common.version> -->
-	<hadoop-common.version>2.6.0</hadoop-common.version>
   </properties>
 
   <dependencies>
@@ -26,57 +22,10 @@
       <scope>test</scope>
     </dependency>
     
-    <dependency>
-		<groupId>org.apache.hadoop</groupId>
-		<artifactId>hadoop-common</artifactId>
-		<version>${hadoop-common.version}</version>
-	</dependency>
-    
-    <dependency>
-		<groupId>org.apache.hadoop</groupId>
-		<artifactId>hadoop-hdfs</artifactId>
-		<version>${hadoop-common.version}</version>
-	</dependency>
-    
-    <dependency>
-		<groupId>org.apache.hadoop</groupId>
-		<artifactId>hadoop-client</artifactId>
-		<version>${hadoop-common.version}</version>
-	</dependency>
-	
-	<dependency>
-		<groupId>org.apache.hadoop</groupId>
-		<artifactId>hadoop-mapreduce-client-core</artifactId>
-		<version>${hadoop-common.version}</version>
-	</dependency>
-	
-	<dependency>
-		<groupId>org.apache.hadoop</groupId>
-		<artifactId>hadoop-yarn-common</artifactId>
-		<version>${hadoop-common.version}</version>
-	</dependency>
-	
-	<dependency>
-		<groupId>org.apache.hadoop</groupId>
-		<artifactId>hadoop-yarn-api</artifactId>
-		<version>${hadoop-common.version}</version>
-	</dependency>
-	
-    <dependency>
-		<groupId>org.apache.hbase</groupId>
-		<artifactId>hbase</artifactId>
-		<version>${hbase.version}</version>
-		<exclusions> 
-			<exclusion>
-				<groupId>org.apache.zookeeper</groupId>
-				<artifactId>zookeeper</artifactId>
-			</exclusion>
-		</exclusions>
-	</dependency>
 	<dependency>
 		<groupId>org.apache.kafka</groupId>
 		<artifactId>kafka_2.11</artifactId>
-		<version>0.9.0.0</version>
+		<version>0.10.0.1</version>
 	</dependency>
   </dependencies>
 </project>

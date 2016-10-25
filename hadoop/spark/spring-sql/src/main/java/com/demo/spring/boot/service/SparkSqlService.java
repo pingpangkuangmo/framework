@@ -11,6 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.ReentrantLock;
 
 import com.demo.spring.boot.util.SparkSqlUtil;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.spark.SparkConf;
 import org.apache.spark.SparkContext;
@@ -20,11 +21,11 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.hive.HiveContext;
 import org.apache.spark.sql.types.StructField;
 import org.apache.spark.sql.types.StructType;
-
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+
 import scala.collection.JavaConversions;
 
 @Service
@@ -77,6 +78,11 @@ public class SparkSqlService implements Serializable, InitializingBean{
 		Long sqlId = sqlCount.incrementAndGet();
 		addSqlJob(sqlId, db, sql);
 		return sqlId;
+	}
+
+	private void addSqlJob(Long sqlId, String db, String sql) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public List<Map<String, Object>> getData(String db, String sql){
