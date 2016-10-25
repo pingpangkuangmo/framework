@@ -1,5 +1,6 @@
 package com.demo.tomcat;
 
+import java.net.Socket;
 import java.util.Hashtable;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -51,6 +52,7 @@ public class Main {
 	CatalinaProperties catalinaProperties;
 	Engine engine;
 	Acceptor acceptor;
+	Socket socket;
 	
 	//旧版本7.0
 	

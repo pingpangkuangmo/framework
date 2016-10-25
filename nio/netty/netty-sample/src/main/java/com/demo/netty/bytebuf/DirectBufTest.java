@@ -1,7 +1,9 @@
 package com.demo.netty.bytebuf;
 
 import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.concurrent.TimeUnit;
+
 import sun.nio.ch.DirectBuffer;
 
 public class DirectBufTest {
@@ -18,5 +20,7 @@ public class DirectBufTest {
         TimeUnit.SECONDS.sleep(120);
          
         System.out.println("ok");
+        
+        FileChannel f;
 	}
 }

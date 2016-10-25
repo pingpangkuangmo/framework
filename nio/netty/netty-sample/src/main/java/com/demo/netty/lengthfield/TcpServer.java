@@ -1,6 +1,9 @@
 package com.demo.netty.lengthfield;
 
+import java.nio.channels.SelectionKey;
 import java.nio.charset.Charset;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.Lock;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
@@ -18,6 +21,9 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.codec.MessageToMessageDecoder;
+import io.netty.handler.codec.http.HttpRequestDecoder;
+import io.netty.handler.codec.http.HttpResponseEncoder;
 import io.netty.handler.codec.string.StringDecoder;
 
 public class TcpServer {
@@ -29,8 +35,16 @@ public class TcpServer {
 	EpollEventLoopGroup epollEventLoopGroup;
 	ByteBuf byteBuf;
 	ByteBufAllocator byteBufAllocator;
-	Channel channel;
-	ChannelPipeline channelPipeline;
+	//sun.nio.ch.EPollSelectorImpl ePollSelectorImpl;
+	EventLoopGroup eventLoopGroup;
+	Lock lock;
+	SelectionKey selectionKey;
+	MessageToMessageDecoder<?> messageDecoder;
+	StringDecoder stringDecoder;
+	HttpRequestDecoder httpRequestDecoder;
+	HttpResponseEncoder httpResponseEncoder;
+	java.nio.channels.spi.SelectorProvider selectorProvider;
+	ConcurrentHashMap<String, String> con;
 
 	public static void main(String[] args){
 		EventLoopGroup bossGroup=new NioEventLoopGroup(1);
