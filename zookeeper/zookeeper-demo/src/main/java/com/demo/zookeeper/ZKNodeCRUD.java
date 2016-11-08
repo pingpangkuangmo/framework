@@ -19,18 +19,23 @@ import org.apache.zookeeper.proto.ConnectRequest;
 import org.apache.zookeeper.server.DataTree;
 import org.apache.zookeeper.server.FinalRequestProcessor;
 import org.apache.zookeeper.server.NIOServerCnxn;
+import org.apache.zookeeper.server.RequestProcessor;
 import org.apache.zookeeper.server.ServerCnxn;
+import org.apache.zookeeper.server.SyncRequestProcessor;
 import org.apache.zookeeper.server.ZooKeeperServer;
 import org.apache.zookeeper.server.SessionTracker.Session;
 import org.apache.zookeeper.server.WatchManager;
 import org.apache.zookeeper.server.auth.AuthenticationProvider;
 import org.apache.zookeeper.server.auth.ProviderRegistry;
 import org.apache.zookeeper.server.quorum.FastLeaderElection;
+import org.apache.zookeeper.server.quorum.Follower;
+import org.apache.zookeeper.server.quorum.Leader;
 import org.apache.zookeeper.server.quorum.LearnerHandler;
 import org.apache.zookeeper.server.quorum.QuorumCnxManager;
 import org.apache.zookeeper.server.quorum.QuorumPeer.ServerState;
 import org.apache.zookeeper.server.quorum.QuorumPeerMain;
 import org.apache.zookeeper.server.quorum.Vote;
+import org.apache.zookeeper.server.util.ZxidUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -60,6 +65,12 @@ public class ZKNodeCRUD implements Watcher{
 	NIOServerCnxn nioServerCnxn;
 	ConnectRequest connectRequest;
 	ZookeeperFactory zookeeperFactory;
+	Follower follower;
+	Leader leader;
+	SyncRequestProcessor SyncRequestProcessor;
+	NIOServerCnxn NIOServerCnxn;
+	RequestProcessor RequestProcessor;
+	ZxidUtils zxid;
 
 	@Before
 	public void init() throws IOException{
