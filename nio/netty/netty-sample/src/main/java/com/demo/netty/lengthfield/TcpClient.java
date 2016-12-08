@@ -19,7 +19,7 @@ public class TcpClient {
 	          
 	        try{  
 	              
-	            socket = new Socket("localhost", 8080);        
+	            socket = new Socket("192.168.126.131", 8080);        
 	            out = new DataOutputStream(socket.getOutputStream());   
 	            in = socket.getInputStream();  
 	              

@@ -36,7 +36,6 @@ public class TcpServer {
 	ByteBuf byteBuf;
 	ByteBufAllocator byteBufAllocator;
 	//sun.nio.ch.EPollSelectorImpl ePollSelectorImpl;
-	EventLoopGroup eventLoopGroup;
 	Lock lock;
 	SelectionKey selectionKey;
 	MessageToMessageDecoder<?> messageDecoder;
@@ -48,7 +47,7 @@ public class TcpServer {
 
 	public static void main(String[] args){
 		EventLoopGroup bossGroup=new NioEventLoopGroup(1);
-		EventLoopGroup workerGroup = new EpollEventLoopGroup();
+		EventLoopGroup workerGroup = new NioEventLoopGroup();
 		try {
 			ServerBootstrap serverBootstrap=new ServerBootstrap();
 			serverBootstrap.group(bossGroup,workerGroup)

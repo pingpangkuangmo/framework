@@ -41,17 +41,17 @@ public class Main {
 	
 	ThreadLocal<String> threadLocal;
 	
-	Poller poller;
+	//Poller poller;
 	
 	org.apache.catalina.startup.Bootstrap st;
 	
-	NioEndpoint nioEndpoint;
+	//NioEndpoint nioEndpoint;
 	Executors executors2;
 	
 	Catalina catalina;
 	CatalinaProperties catalinaProperties;
 	Engine engine;
-	Acceptor acceptor;
+	//Acceptor acceptor;
 	Socket socket;
 	
 	//旧版本7.0
@@ -76,4 +76,5 @@ public class Main {
 	StandardService standardService2;
 	StandardServer standardServer2;
 	
+	//WebappClassLoader WebappClassLoader;
 }

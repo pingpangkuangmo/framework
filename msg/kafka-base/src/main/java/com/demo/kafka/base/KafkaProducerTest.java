@@ -1,37 +1,58 @@
 package com.demo.kafka.base;
 
-import java.util.Properties;
-
+import kafka.cluster.Partition;
+import kafka.cluster.Replica;
+import kafka.controller.KafkaController;
+import kafka.controller.ReplicaStateMachine;
+import kafka.log.Log;
+import kafka.log.LogManager;
+import kafka.server.DelayedFetch;
+import kafka.server.KafkaApis;
+import kafka.server.ReplicaManager;
+import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-
-import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.RecordMetadata;
 
+import java.util.Properties;
+import kafka.server.KafkaServer;
 
 
 public class KafkaProducerTest {
-	
 
-	public static void main(String[] args){
+
+    KafkaServer kafkaServer;
+	Partition partition;
+    Replica replica;
+	KafkaApis kafkaApis;
+	KafkaController kafkaController;
+	LogManager logManager;
+	Log log;
+	ReplicaManager replicaManager;
+	DelayedFetch delayedFetch;
+    ReplicaStateMachine replicaStateMachine;
+
+
+
+    public static void main(String[] args){
 		Properties props=new Properties();
 		props.setProperty("metadata.broker.list","192.168.126.131:9092");
 		props.setProperty("serializer.class","kafka.serializer.StringEncoder");
 		String topic="test";
         props.put("key.serializer", "org.apache.kafka.common.serialization.IntegerSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        KafkaProducer producer = new KafkaProducer<>(props);
+        KafkaProducer<Integer, String> producer = new KafkaProducer<Integer, String>(props);
 		int count = 0;
 		boolean isAsync = false;
 		while(true){
 			String messageStr = "msg " + count;
 			long startTime = System.currentTimeMillis();
 			if (isAsync) { // Send asynchronously
-				producer.send(new ProducerRecord<>(topic, count, messageStr),
+				producer.send(new ProducerRecord<Integer, String>(topic, count, messageStr),
 						new DemoCallBack(startTime, count, messageStr));
 			} else { // Send synchronously
 				try {
-					producer.send(new ProducerRecord<>(topic, count, messageStr)).get();
+					producer.send(new ProducerRecord<Integer, String>(topic, count, messageStr)).get();
 					System.out.println("Sent message: (" + count + ", " + messageStr + ")");
 				} catch (Exception e) {
 					e.printStackTrace();

@@ -1,15 +1,14 @@
 package com.demo.base;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 public class BaseMain {
 	
 	Collections coll;
 	Comparator<String>  sds;
+	
 
 	public static void main(String[] args) throws Exception {
 		ArrayList<Integer> arrayList3=new ArrayList<Integer>();  
@@ -21,7 +20,7 @@ public class BaseMain {
 	}
 	
 	public static void test1(){
-		Number[] num = new Integer[10];
+		/*Number[] num = new Integer[10];
 		num[0] = 1.2f;
 		System.out.println(num[0]);
 		
@@ -34,6 +33,6 @@ public class BaseMain {
 		
 		List<? super Number> b = new ArrayList<Number>();
 		b.add(new Integer(1));
-		b.add(new Float(1.2f));
+		b.add(new Float(1.2f));*/
 	}
 }
