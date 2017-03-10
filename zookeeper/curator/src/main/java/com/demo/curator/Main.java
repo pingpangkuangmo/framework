@@ -1,5 +1,6 @@
 package com.demo.curator;
 
+import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.atomic.DistributedAtomicLong;
 import org.apache.curator.framework.recipes.locks.InterProcessLock;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;
@@ -17,4 +18,5 @@ public class Main {
 	InterProcessLock interProcessLock;
 	InterProcessMutex interProcessMutex;
 	InterProcessReadWriteLock interProcessReadWriteLock;
+	CuratorFramework curatorFramework;
 }

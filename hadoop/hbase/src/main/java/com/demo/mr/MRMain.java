@@ -15,6 +15,9 @@ import org.apache.hadoop.mapred.SequenceFileInputFormat;
 import org.apache.hadoop.mapred.jobcontrol.JobControl;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.streaming.PipeMapper;
+import org.apache.hadoop.yarn.api.ApplicationMasterProtocol;
+import org.apache.hadoop.yarn.server.resourcemanager.ResourceManager;
+import org.apache.hadoop.yarn.server.resourcemanager.amlauncher.ApplicationMasterLauncher;
 
 public class MRMain {
 	
@@ -44,6 +47,10 @@ public class MRMain {
 	JobControl jobControl;
 	
 	org.apache.hadoop.util.RunJar runJar;
+	
+	ResourceManager resourceManager;
+	ApplicationMasterLauncher applicationMasterLauncher;
+	ApplicationMasterProtocol applicationMasterProtocol;
 	
 	public static void main(String[] args){
 		

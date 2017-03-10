@@ -1,7 +1,12 @@
 package com.demo.hbase;
 
+import java.util.ArrayList;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.HTable;
@@ -29,4 +34,8 @@ public class Main {
 	FutureTask<?> futureTask;
 	Object obj;
 	
+	ConcurrentHashMap<String, String> sds;
+	ConcurrentLinkedDeque<String> sdfdfd;
+	ArrayBlockingQueue<String> afsdfdsf;
+	LinkedBlockingQueue<String> afcsdfd;
 }

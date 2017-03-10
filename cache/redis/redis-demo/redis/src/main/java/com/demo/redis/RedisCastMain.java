@@ -5,6 +5,8 @@ import java.net.Socket;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Test;
+
 import redis.clients.jedis.Connection;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -22,12 +24,12 @@ public class RedisCastMain {
 	Socket socket;
 	Connection con;
 	JedisPool jedisPool;
-	Jedis jedis;
+	Jedis jedis = new Jedis("192.168.186.128", 6379);
 	ShardedJedis shardedJedis;
 	ShardedJedisPool shardedJedisPool;
 
 	public static void main(String[] args) throws Exception{
-		Jedis jedis = new Jedis("192.168.126.131", 6379);
+		Jedis jedis = new Jedis("192.168.186.128", 6379);
 		System.out.println("get name=" + jedis.get("name"));
 		System.out.println("Make SocketTimeoutException");
 		System.in.read(); //等待制造SocketTimeoutException
@@ -116,6 +118,7 @@ public class RedisCastMain {
         }  
     }
 	
+	@Test
 	public void pipeline(){  
         String key = "pipeline-test";  
         String old = jedis.get(key);  

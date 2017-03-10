@@ -2,16 +2,20 @@ package com.demo.controller;
 
 
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 import javax.servlet.Servlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import javax.transaction.TransactionManager;
 import javax.transaction.UserTransaction;
 import javax.transaction.xa.XAResource;
 import javax.transaction.xa.Xid;
 
+import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.interceptor.ExposeInvocationInterceptor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -49,6 +53,13 @@ public class HomeAction {
 	List list;
 	
 	ScheduledThreadPoolExecutor ScheduledThreadPoolExecutor;
+	HttpServletRequest HttpServletRequest;
+	HttpServletResponse HttpServletRequestaaa;
+	ProxyFactory proxyFactory;
+	//JdkDynamicAopProxy jdkDynamicAopProxy;
+	//ObjenesisCglibAopProxy objenesisCglibAopProxy;
+	ArrayList<String> array;
+	//FinalizerThread finalizerThread;
 	
 	@Transactional
 	@RequestMapping("/")
