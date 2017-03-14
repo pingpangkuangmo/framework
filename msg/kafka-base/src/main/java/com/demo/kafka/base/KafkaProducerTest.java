@@ -31,6 +31,7 @@ public class KafkaProducerTest {
 	ReplicaManager replicaManager;
 	DelayedFetch delayedFetch;
     ReplicaStateMachine replicaStateMachine;
+    //TopicCommand topicCommand;
 
 
 

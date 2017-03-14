@@ -3,6 +3,8 @@ package com.demo.alg.sort;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Test;
+
 public class Test1 {
 
 	int[] arr;
@@ -128,5 +130,10 @@ public class Test1 {
 		TreeNode left;
 		TreeNode right;
 		Object value;
+	}
+	
+	@Test
+	public void testBit(){
+		System.out.println(~15);
 	}
 }

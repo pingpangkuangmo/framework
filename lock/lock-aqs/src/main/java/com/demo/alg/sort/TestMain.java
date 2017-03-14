@@ -1,9 +1,13 @@
 package com.demo.alg.sort;
 
+import java.math.BigInteger;
+
 public class TestMain {
 
 	public static void main(String[] args){
 		System.out.println("test 快排");
+		BigInteger bi1 = new BigInteger(new byte[]{1,1}); 
+        System.out.println("bi1=" + bi1.toString()); 
 	}
 	
 	public static void fastSort(int[] arr){

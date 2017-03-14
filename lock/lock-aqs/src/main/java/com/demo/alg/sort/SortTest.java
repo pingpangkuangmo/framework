@@ -1,5 +1,6 @@
 package com.demo.alg.sort;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
@@ -51,6 +52,7 @@ public class SortTest {
 	LinkedHashMap<String, String> linkedHashMap;
 	ArrayList<String> dds;
 	ConcurrentSkipListMap<String, String> skipList;
+	BigInteger bigInteger;
 	
 	/**
 	 * 5.冒泡排序

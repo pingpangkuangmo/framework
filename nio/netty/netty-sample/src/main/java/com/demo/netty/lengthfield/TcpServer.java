@@ -8,6 +8,8 @@ import java.util.concurrent.locks.Lock;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
+import io.netty.buffer.PoolArenaMetric;
+import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -42,6 +44,10 @@ public class TcpServer {
 	HttpResponseEncoder httpResponseEncoder;
 	java.nio.channels.spi.SelectorProvider selectorProvider;
 	ConcurrentHashMap<String, String> con;
+	PoolArenaMetric poolArenaMetric;
+	ByteBufAllocator byteBufAllocator2;
+	PooledByteBufAllocator pooledByteBufAllocator;
+	PoolArenaMetric poolArenaMetric2;
 
 	public static void main(String[] args){
 		EventLoopGroup bossGroup=new NioEventLoopGroup(1);
