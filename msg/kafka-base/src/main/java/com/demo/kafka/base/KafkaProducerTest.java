@@ -37,7 +37,9 @@ public class KafkaProducerTest {
 
     public static void main(String[] args){
 		Properties props=new Properties();
-		props.setProperty("metadata.broker.list","192.168.126.131:9092");
+		//props.setProperty("metadata.broker.list","192.168.126.131:9092");
+		//props.setProperty("metadata.broker.list","10.103.102.168:9092");
+		props.setProperty("bootstrap.servers","10.103.102.168:9092");
 		props.setProperty("serializer.class","kafka.serializer.StringEncoder");
 		String topic="test";
         props.put("key.serializer", "org.apache.kafka.common.serialization.IntegerSerializer");

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl"  href="configuration.xsl"?>
+<configuration>
+    <property>
+        <name>hbase.zookeeper.quorum</name>
+        <value>adca-arch-etrace-hadoop-3.vm.elenet.me,adca-arch-etrace-hadoop-4.vm.elenet.me,adca-arch-etrace-hadoop-5.vm.elenet.me</value>
+    </property>
+    <property>
+        <name>zookeeper.znode.parent</name>
+        <value>/hbase</value>
+    </property>
+</configuration>

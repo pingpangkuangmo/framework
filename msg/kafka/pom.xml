@@ -22,11 +22,28 @@
       <scope>test</scope>
     </dependency>
     
+    <!--<dependency>-->
+		<!--<groupId>org.apache.kafka</groupId>-->
+		<!--<artifactId>kafka_2.10</artifactId>-->
+		<!--<version>0.9.0.0</version>-->
+	<!--</dependency>-->
+
+
     <dependency>
-		<groupId>org.apache.kafka</groupId>
-		<artifactId>kafka_2.10</artifactId>
-		<version>0.9.0.0</version>
-	</dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka_2.10</artifactId>
+      <version>0.8.2.2</version>
+      <exclusions>
+          <exclusion>
+              <artifactId>junit</artifactId>
+              <groupId>junit</groupId>
+          </exclusion>
+          <exclusion>
+              <groupId>org.slf4j</groupId>
+              <artifactId>slf4j-log4j12</artifactId>
+          </exclusion>
+      </exclusions>
+    </dependency>
     <dependency> 
 		<groupId>com.alibaba</groupId>
 		<artifactId>fastjson</artifactId>
@@ -42,8 +59,13 @@
         <groupId>org.codehaus.jackson</groupId>   
         <artifactId>jackson-mapper-asl</artifactId>   
         <version>1.9.11</version>   
-    </dependency>   
-	
-    
+    </dependency>
+
+      <dependency>
+          <groupId>me.ele.arch.etrace</groupId>
+          <artifactId>metric-core</artifactId>
+          <version>1.0.1-SNAPSHOT</version>
+      </dependency>
+
   </dependencies>
 </project>

@@ -10,6 +10,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.HTable;
+import org.apache.hadoop.hbase.replication.master.ReplicationLogCleaner;
 
 public class Main {
 
@@ -38,4 +39,5 @@ public class Main {
 	ConcurrentLinkedDeque<String> sdfdfd;
 	ArrayBlockingQueue<String> afsdfdsf;
 	LinkedBlockingQueue<String> afcsdfd;
+	ReplicationLogCleaner replicationLogCleaner;
 }
